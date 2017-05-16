@@ -14,6 +14,7 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FsRegEx", "src\FsRegEx\FsRe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{BF60BC93-E09B-4E5F-9D85-95A519479D54}"
 	ProjectSection(SolutionItems) = preProject
+		.github\ISSUE_TEMPLATE.md = .github\ISSUE_TEMPLATE.md
 		LICENSE.txt = LICENSE.txt
 		src\FsRegEx\paket.template = src\FsRegEx\paket.template
 		README.md = README.md
