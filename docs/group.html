@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Capture Groups
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Composable F# regular expressions."/>
+    <meta name="author" content="Jack Fox"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <link type="text/css" rel="stylesheet" href="/FsRegEx/content/style.css" />
+    <script type="text/javascript" src="/FsRegEx/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/jackfoxy/FsRegEx">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FsRegEx/index.html">FsRegEx</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+<h1><a name="Capture-Groups" class="anchor" href="#Capture-Groups">Capture Groups</a></h1>
+<h2><a name="FsGroup" class="anchor" href="#FsGroup">FsGroup</a></h2>
+<p><code>FsGroup</code> provides the functionality in the <code>System.Text.RegularExpressions.Group</code> Class, but returning arrays of objects instead of special collections and makes the group name a property.</p>
+<h3><a name="anonymous-groups" class="anchor" href="#anonymous-groups">anonymous groups</a></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+<span class="l">25: </span>
+<span class="l">26: </span>
+<span class="l">27: </span>
+<span class="l">28: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">pattern</span> <span class="o">=</span> <span class="s">@&quot;(\b(\w+?)[,:;]?\s?)+[?.!]&quot;</span>
+<span class="k">let</span> <span class="i">input</span> <span class="o">=</span> <span class="s">&quot;This is one sentence. This is a second sentence.&quot;</span>
+
+<span class="k">let</span> <span class="i">m</span> <span class="o">=</span> <span class="i">FsRegEx</span><span class="o">.</span><span class="i">firstMatch</span> <span class="i">pattern</span> <span class="i">input</span>
+<span class="i">printfn</span> <span class="s">&quot;Match: %s&quot;</span> <span class="i">m</span><span class="o">.</span><span class="i">Value</span>
+
+<span class="i">m</span><span class="o">.</span><span class="i">Groups</span>()
+<span class="o">|&gt;</span> <span class="i">Array</span><span class="o">.</span><span class="i">iteri</span> (<span class="k">fun</span> <span class="i">i</span> <span class="i">g</span> <span class="k">-&gt;</span> 
+    <span class="i">printfn</span> <span class="s">&quot;   Group %i: &#39;%s&#39;&quot;</span> <span class="i">i</span> <span class="i">g</span><span class="o">.</span><span class="i">Value</span>
+    <span class="i">g</span><span class="o">.</span><span class="i">Captures</span>()
+    <span class="o">|&gt;</span> <span class="i">Array</span><span class="o">.</span><span class="i">iteri</span> (<span class="k">fun</span> <span class="i">i</span> <span class="i">c</span> <span class="k">-&gt;</span>  
+        <span class="i">printfn</span> <span class="s">&quot;      Capture %i: &#39;%s&#39;&quot;</span> <span class="i">i</span> <span class="i">c</span><span class="o">.</span><span class="i">Value</span> 
+        )
+    )
+
+<span class="c">// Match: This is one sentence.</span>
+<span class="c">//    Group 0: &#39;This is one sentence.&#39;</span>
+<span class="c">//        Capture 0: &#39;This is one sentence.&#39;</span>
+<span class="c">//    Group 1: &#39;sentence&#39;</span>
+<span class="c">//        Capture 0: &#39;This &#39;</span>
+<span class="c">//        Capture 1: &#39;is &#39;</span>
+<span class="c">//        Capture 2: &#39;one &#39;</span>
+<span class="c">//        Capture 3: &#39;sentence&#39;</span>
+<span class="c">//    Group 2: &#39;sentence&#39;</span>
+<span class="c">//        Capture 0: &#39;This&#39;</span>
+<span class="c">//        Capture 1: &#39;is&#39;</span>
+<span class="c">//        Capture 2: &#39;one&#39;</span>
+<span class="c">//        Capture 3: &#39;sentence&#39;</span>
+</code></pre></td>
+</tr>
+</table>
+<h3><a name="named-groups" class="anchor" href="#named-groups">named groups</a></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">pattern&#39;</span> <span class="o">=</span> <span class="s">@&quot;\b(?&lt;FirstWord&gt;\w+)\s?((\w+)\s)*(?&lt;LastWord&gt;\w+)?(?&lt;Punctuation&gt;\p{Po})&quot;</span>
+<span class="k">let</span> <span class="i">input&#39;</span> <span class="o">=</span> <span class="s">&quot;The cow jumped over the moon.&quot;</span>
+
+<span class="k">let</span> <span class="i">m&#39;</span> <span class="o">=</span> <span class="i">FsRegEx</span><span class="o">.</span><span class="i">firstMatch</span> <span class="i">pattern&#39;</span> <span class="i">input&#39;</span>
+
+<span class="i">printfn</span> <span class="s">&quot;Named Groups:&quot;</span>
+
+<span class="i">m&#39;</span><span class="o">.</span><span class="i">Groups</span>()
+<span class="o">|&gt;</span> <span class="i">Array</span><span class="o">.</span><span class="i">iter</span> (<span class="k">fun</span> <span class="i">g</span> <span class="k">-&gt;</span> <span class="i">printfn</span> <span class="s">&quot;   %s: &#39;%s&#39;&quot;</span> <span class="i">g</span><span class="o">.</span><span class="i">Name</span> <span class="i">g</span><span class="o">.</span><span class="i">Value</span>)
+
+<span class="c">// Named Groups:</span>
+<span class="c">//    0: &#39;The cow jumped over the moon.&#39;</span>
+<span class="c">//    1: &#39;the &#39;</span>
+<span class="c">//    2: &#39;the&#39;</span>
+<span class="c">//    FirstWord: &#39;The&#39;</span>
+<span class="c">//    LastWord: &#39;moon&#39;</span>
+<span class="c">//    Punctuation: &#39;.&#39;</span>
+</code></pre></td>
+</tr>
+</table>
+<h3><a name="capturing-groups" class="anchor" href="#capturing-groups">capturing groups</a></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+<span class="l">25: </span>
+<span class="l">26: </span>
+<span class="l">27: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">regExpr</span> <span class="o">=</span> <span class="s">@&quot;\b(\w+?)([\u00AE\u2122])&quot;</span>
+
+<span class="k">let</span> <span class="i">matches</span> <span class="o">=</span> 
+    <span class="s">&quot;Microsoft&#174; Office Professional Edition combines several office &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;productivity products, including Word, Excel&#174;, Access&#174;, Outlook&#174;, &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;PowerPoint&#174;, and several others. Some guidelines for creating &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;corporate documents using these productivity tools are available &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;from the documents created using Silverlight™ on the corporate &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;intranet site.&quot;</span>
+    <span class="o">|&gt;</span> <span class="i">FsRegEx</span><span class="o">.</span><span class="i">matches</span> <span class="i">regExpr</span>
+
+<span class="i">matches</span>
+<span class="o">|&gt;</span> <span class="i">Array</span><span class="o">.</span><span class="i">iter</span> (<span class="k">fun</span> <span class="i">m</span> <span class="k">-&gt;</span>
+    <span class="k">let</span> <span class="i">groups</span> <span class="o">=</span> <span class="i">m</span><span class="o">.</span><span class="i">Groups</span>()
+    <span class="i">printfn</span> <span class="s">&quot;%s: %s&quot;</span> <span class="i">groups</span><span class="o">.</span>[<span class="n">2</span>]<span class="o">.</span><span class="i">Value</span> <span class="i">groups</span><span class="o">.</span>[<span class="n">1</span>]<span class="o">.</span><span class="i">Value</span>)
+                           
+<span class="i">printfn</span> <span class="s">&quot;&quot;</span>
+<span class="i">printfn</span> <span class="s">&quot;Found %i trademarks or registered trademarks.&quot;</span> <span class="i">matches</span><span class="o">.</span><span class="i">Length</span>
+
+<span class="c">// &#174;: Microsoft</span>
+<span class="c">// &#174;: Excel</span>
+<span class="c">// &#174;: Access</span>
+<span class="c">// &#174;: Outlook</span>
+<span class="c">// &#174;: PowerPoint</span>
+<span class="c">// ™: Silverlight</span>
+<span class="c">//</span>
+<span class="c">// Found 6 trademarks or registered trademarks.</span>
+</code></pre></td>
+</tr>
+</table>
+<h3><a name="group-numbers-and-names" class="anchor" href="#group-numbers-and-names">group numbers and names</a></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+<span class="l">25: </span>
+<span class="l">26: </span>
+<span class="l">27: </span>
+<span class="l">28: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span class="i">System</span>
+
+<span class="k">let</span> <span class="i">pattern&#39;&#39;</span> <span class="o">=</span> <span class="s">@&quot;\b((?&lt;word&gt;\w+)\s*)+(?&lt;end&gt;[.?!])&quot;</span>
+<span class="k">let</span> <span class="i">input&#39;&#39;</span> <span class="o">=</span> <span class="s">&quot;This is a sentence. This is a second sentence.&quot;</span>
+
+<span class="k">let</span> <span class="i">groupNumbers&#39;</span> <span class="o">=</span> <span class="i">FsRegEx</span><span class="o">.</span><span class="i">groupNumbers</span> <span class="i">pattern&#39;&#39;</span>
+<span class="k">let</span> <span class="i">groupNames</span> <span class="o">=</span> <span class="i">FsRegEx</span><span class="o">.</span><span class="i">groupNames</span> <span class="i">pattern&#39;&#39;</span>
+
+<span class="k">let</span> <span class="i">m&#39;&#39;</span> <span class="o">=</span> <span class="i">FsRegEx</span><span class="o">.</span><span class="i">firstMatch</span> <span class="i">pattern&#39;&#39;</span> <span class="i">input&#39;&#39;</span>
+
+<span class="i">printfn</span> <span class="s">&quot;Match: %s&quot;</span> <span class="i">m&#39;&#39;</span><span class="o">.</span><span class="i">Value</span>
+
+<span class="i">Array</span><span class="o">.</span><span class="i">zip</span> <span class="i">groupNumbers&#39;</span> <span class="i">groupNames</span>
+<span class="o">|&gt;</span> <span class="i">Array</span><span class="o">.</span><span class="i">iter</span> (<span class="k">fun</span> (<span class="i">n</span>, <span class="i">name</span>) <span class="k">-&gt;</span>
+    <span class="k">let</span> <span class="i">isNumber</span>, _ <span class="o">=</span> <span class="i">Int32</span><span class="o">.</span><span class="i">TryParse</span>(<span class="i">name</span>)
+    <span class="i">printfn</span> <span class="s">&quot;   Group %i%s: &#39;%s&#39;&quot;</span> 
+        <span class="i">n</span> 
+        (<span class="k">if</span> (<span class="i">not</span> <span class="i">isNumber</span>) <span class="k">then</span>
+            <span class="s">&quot; (&quot;</span> <span class="o">+</span> <span class="i">name</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span>
+         <span class="k">else</span> <span class="i">String</span><span class="o">.</span><span class="i">Empty</span>)
+        (<span class="i">m&#39;</span><span class="o">.</span><span class="i">Groups</span>())<span class="o">.</span>[<span class="i">n</span>]<span class="o">.</span><span class="i">Value</span>
+    )
+
+<span class="c">// Match: This is a sentence.</span>
+<span class="c">//    Group 0: &#39;This is a sentence.&#39;</span>
+<span class="c">//    Group 1: &#39;sentence&#39;</span>
+<span class="c">//    Group 2 (word): &#39;sentence&#39;</span>
+<span class="c">//    Group 3 (end): &#39;.&#39;</span>
+</code></pre></td>
+</tr>
+</table>
+
+
+        </div>
+        <div class="span3">
+          <img src="/FsRegEx/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
+            <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+                <li class="nav-header">FsRegEx</li>
+                <li><a href="/FsRegEx/index.html">Home page</a></li>
+                <li class="divider"></li>
+                <li><a href="http://nuget.org/packages/FsRegEx">Get Library via NuGet</a></li>
+                <li><a href="https://github.com/jackfoxy/FsRegEx">Source Code on GitHub</a></li>
+                <li><a href="/FsRegEx/license.html">License</a></li>
+                <li><a href="/FsRegEx/release-notes.html">Release Notes</a></li>
+
+                <li class="nav-header">Examples</li>
+                <li><a href="/FsRegEx/matching.html">Matching</a></li>
+                <li><a href="/FsRegEx/group.html">Match Groups</a></li>
+                <li><a href="/FsRegEx/replacesplit.html">Replace and Split</a></li>
+                <li><a href="/FsRegEx/capture.html">Capture</a></li>
+
+                <li class="nav-header">Documentation</li>
+                <li><a href="/FsRegEx/reference/index.html">API Reference</a></li>
+
+                <li class="nav-header">More...</li>
+                <li><a href="/FsRegEx/emailregex.html">On the Futility of Email Regex Validation</a></li>
+                <li><a href="/FsRegEx/tutorial.html">F# Verbal Expressions Tutorial</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/jackfoxy/FsRegEx"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+  </body>
+  </html>

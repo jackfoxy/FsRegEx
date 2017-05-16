@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Replacing and Splitting
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Composable F# regular expressions."/>
+    <meta name="author" content="Jack Fox"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <link type="text/css" rel="stylesheet" href="/FsRegEx/content/style.css" />
+    <script type="text/javascript" src="/FsRegEx/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/jackfoxy/FsRegEx">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FsRegEx/index.html">FsRegEx</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+<h1><a name="Replacing-and-Splitting" class="anchor" href="#Replacing-and-Splitting">Replacing and Splitting</a></h1>
+<h2><a name="Replace" class="anchor" href="#Replace">Replace</a></h2>
+<p>The <code>System.Text.RegularExpressions.Regex</code> Class provides several overloads of <code>replace</code>. The same overloads are available in the <code>FsRegEx</code> class and as individually
+named functions, including overloads and functions using <code>RegexOptions</code>. <code>Timeout</code> is not supported at this time.</p>
+<h3><a name="simple-replacement-of-all-occurence" class="anchor" href="#simple-replacement-of-all-occurence">simple replacement of all occurence</a></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+<span class="l">9: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span class="i">System</span>
+<span class="k">open</span> <span class="i">System</span><span class="o">.</span><span class="i">Text</span><span class="o">.</span><span class="i">RegularExpressions</span>
+
+<span class="s">&quot;This is   text with   far  too   much   &quot;</span> <span class="o">+</span> 
+                <span class="s">&quot;whitespace.&quot;</span>
+<span class="o">|&gt;</span> <span class="i">FsRegEx</span><span class="o">.</span><span class="i">replace</span> <span class="s">&quot;\\s+&quot;</span> <span class="s">&quot; &quot;</span>
+<span class="o">|&gt;</span><span class="i">printfn</span> <span class="s">&quot;Replacement String: %s&quot;</span> 
+
+<span class="c">// Replacement String: This is text with far too much whitespace.</span>
+</code></pre></td>
+</tr>
+</table>
+<h3><a name="replace-max-time-starting-at" class="anchor" href="#replace-max-time-starting-at">replace max time starting at</a></h3>
+<p>Replaces a specified maximum number of strings starting at location that match a regular expression pattern with a specified replacement string.</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="s">&quot;Instantiating a New Type\n&quot;</span> <span class="o">+</span>
+    <span class="s">&quot;Generally, there are two ways that an\n&quot;</span> <span class="o">+</span> 
+    <span class="s">&quot;instance of a class or structure can\n&quot;</span> <span class="o">+</span>
+    <span class="s">&quot;be instantiated. &quot;</span>
+<span class="o">|&gt;</span> <span class="i">FsRegEx</span><span class="o">.</span><span class="i">replaceMaxTimesStartAtOpt</span> <span class="s">&quot;^.*$&quot;</span> <span class="i">RegexOptions</span><span class="o">.</span><span class="i">Multiline</span> <span class="s">&quot;\n$&amp;&quot;</span>  <span class="o">-</span><span class="n">1</span> <span class="n">1</span>
+<span class="o">|&gt;</span> <span class="i">printfn</span> <span class="s">&quot;%s&quot;</span>
+
+<span class="c">// Instantiating a New Type</span>
+<span class="c">//       </span>
+<span class="c">// Generally, there are two ways that an</span>
+<span class="c">//       </span>
+<span class="c">// instance of a class or structure can</span>
+<span class="c">//       </span>
+<span class="c">// be instntiated.</span>
+</code></pre></td>
+</tr>
+</table>
+<h3><a name="replace-with-MatchEvaluator" class="anchor" href="#replace-with-MatchEvaluator">replace with MatchEvaluator</a></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">capText</span> (<span class="i">m</span> <span class="o">:</span> <span class="i">Match</span>) <span class="o">=</span>
+    <span class="c">// Get the matched string.</span>
+    <span class="k">let</span> <span class="i">x</span> <span class="o">=</span> <span class="i">m</span><span class="o">.</span><span class="i">Value</span>
+    <span class="c">// If the first char is lower case...</span>
+    <span class="k">if</span> (<span class="i">Char</span><span class="o">.</span><span class="i">IsLower</span>(<span class="i">x</span><span class="o">.</span>[<span class="n">0</span>])) <span class="k">then</span>
+        <span class="c">// Capitalize it.</span>
+        (<span class="i">Char</span><span class="o">.</span><span class="i">ToUpper</span>(<span class="i">x</span><span class="o">.</span>[<span class="n">0</span>])<span class="o">.</span><span class="i">ToString</span>()) <span class="o">+</span> (<span class="i">x</span><span class="o">.</span><span class="i">Substring</span>(<span class="n">1</span>, <span class="i">x</span><span class="o">.</span><span class="i">Length</span> <span class="o">-</span> <span class="n">1</span>))
+    <span class="k">else</span>
+        <span class="i">x</span>
+
+<span class="s">&quot;four score and seven years ago&quot;</span>
+<span class="o">|&gt;</span> <span class="i">FsRegEx</span><span class="o">.</span><span class="i">replaceByMatch</span> <span class="s">@&quot;\w+&quot;</span> (<span class="k">new</span> <span class="i">MatchEvaluator</span>(<span class="i">capText</span>))
+<span class="o">|&gt;</span> <span class="i">printfn</span> <span class="s">&quot;result=[%s]&quot;</span>
+
+<span class="c">// result=[Four Score And Seven Years Ago]</span>
+</code></pre></td>
+</tr>
+</table>
+<h2><a name="Splitting" class="anchor" href="#Splitting">Splitting</a></h2>
+<p>The <code>System.Text.RegularExpressions.Regex</code> Class provides several overloads of <code>split</code> to split strings into arrays. The same overloads are available in the <code>FsRegEx</code> class and as individually
+named functions, including overloads and functions using <code>RegexOptions</code>. <code>Timeout</code> is not supported at this time.</p>
+<h3><a name="split-with-Regex-option" class="anchor" href="#split-with-Regex-option">split with Regex option</a></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+<span class="l">9: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="s">&quot;Abc1234Def5678Ghi9012Jklm&quot;</span>
+<span class="o">|&gt;</span> <span class="i">FsRegEx</span><span class="o">.</span><span class="i">splitOpt</span> <span class="s">&quot;[a-z]+&quot;</span> <span class="i">RegexOptions</span><span class="o">.</span><span class="i">IgnoreCase</span>
+<span class="o">|&gt;</span> <span class="i">Array</span><span class="o">.</span><span class="i">iter</span> (<span class="k">fun</span> <span class="i">x</span> <span class="k">-&gt;</span> <span class="i">printfn</span> <span class="s">&quot;&#39;%s&#39;&quot;</span> <span class="i">x</span>)
+
+<span class="c">// &#39;&#39;</span>
+<span class="c">// &#39;1234&#39;</span>
+<span class="c">// &#39;5678&#39;</span>
+<span class="c">// &#39;9012&#39;</span>
+<span class="c">// &#39;&#39;</span>
+</code></pre></td>
+</tr>
+</table>
+
+
+        </div>
+        <div class="span3">
+          <img src="/FsRegEx/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
+            <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+                <li class="nav-header">FsRegEx</li>
+                <li><a href="/FsRegEx/index.html">Home page</a></li>
+                <li class="divider"></li>
+                <li><a href="http://nuget.org/packages/FsRegEx">Get Library via NuGet</a></li>
+                <li><a href="https://github.com/jackfoxy/FsRegEx">Source Code on GitHub</a></li>
+                <li><a href="/FsRegEx/license.html">License</a></li>
+                <li><a href="/FsRegEx/release-notes.html">Release Notes</a></li>
+
+                <li class="nav-header">Examples</li>
+                <li><a href="/FsRegEx/matching.html">Matching</a></li>
+                <li><a href="/FsRegEx/group.html">Match Groups</a></li>
+                <li><a href="/FsRegEx/replacesplit.html">Replace and Split</a></li>
+                <li><a href="/FsRegEx/capture.html">Capture</a></li>
+
+                <li class="nav-header">Documentation</li>
+                <li><a href="/FsRegEx/reference/index.html">API Reference</a></li>
+
+                <li class="nav-header">More...</li>
+                <li><a href="/FsRegEx/emailregex.html">On the Futility of Email Regex Validation</a></li>
+                <li><a href="/FsRegEx/tutorial.html">F# Verbal Expressions Tutorial</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/jackfoxy/FsRegEx"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+  </body>
+  </html>

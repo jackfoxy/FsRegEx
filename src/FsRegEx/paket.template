@@ -1,0 +1,25 @@
+type project
+title
+    FsRegEx
+owners
+    Jack Fox
+authors 
+    Jack Fox
+projectUrl
+    https://github.com/jackfoxy/FsRegEx
+iconUrl
+    https://raw.githubusercontent.com/jackfoxy/FsRegEx/master/docs/img/logo.png
+licenseUrl
+    https://github.com/jackfoxy/FsRegEx/blob/master/LICENSE.txt
+requireLicenseAcceptance
+    false
+copyright
+    Copyright 2017
+tags
+    F# fsharp regularexpression regularexpressions
+summary
+    Composable F# regular expressions.
+description
+    FsRegEx provides composable F# functionality for all the capabilities of the .NET Regex class including supporting pipe forward |> composability.
+
+

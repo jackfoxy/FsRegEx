@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Matching
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Composable F# regular expressions."/>
+    <meta name="author" content="Jack Fox"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <link type="text/css" rel="stylesheet" href="/FsRegEx/content/style.css" />
+    <script type="text/javascript" src="/FsRegEx/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/jackfoxy/FsRegEx">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FsRegEx/index.html">FsRegEx</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+<h1><a name="Matching" class="anchor" href="#Matching">Matching</a></h1>
+<h2><a name="IsMatch" class="anchor" href="#IsMatch">IsMatch</a></h2>
+<p>The <code>System.Text.RegularExpressions.Regex</code> Class provides several overloads of <code>isMatch</code>. The same overloads are available in the <code>FsRegEx</code> class and as individually
+named functions, including overloads and functions using <code>RegexOptions</code>. <code>Timeout</code> is not supported at this time.</p>
+<h3><a name="is-match-on-first-occurence" class="anchor" href="#is-match-on-first-occurence">is match on first occurence</a></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+<span class="l">25: </span>
+<span class="l">26: </span>
+<span class="l">27: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span class="i">FsRegEx</span>
+<span class="k">module</span> <span class="i">F</span> <span class="o">=</span> <span class="i">FsRegEx</span>
+
+<span class="k">let</span> <span class="i">partNumbers</span> <span class="o">=</span> [| <span class="s">&quot;1298-673-4192&quot;</span>; <span class="s">&quot;A08Z-931-468A&quot;</span>; 
+                    <span class="s">&quot;_A90-123-129X&quot;</span>; <span class="s">&quot;12345-KKA-1230&quot;</span>; 
+                    <span class="s">&quot;0919-2893-1256&quot;</span> |]
+
+<span class="k">for</span> <span class="i">partNumber</span> <span class="k">in</span> <span class="i">partNumbers</span> <span class="k">do</span>
+    <span class="i">printfn</span> <span class="s">&quot;%s %s a valid part number.&quot;</span>
+        <span class="i">partNumber</span>
+        (<span class="k">if</span> (<span class="i">F</span><span class="o">.</span><span class="i">isMatch</span> <span class="s">@&quot;^[a-zA-Z0-9]\d{2}[a-zA-Z0-9](-\d{3}){2}[A-Za-z0-9]$&quot;</span> <span class="i">partNumber</span> ) <span class="k">then</span> <span class="s">&quot;is&quot;</span> 
+            <span class="k">else</span> <span class="s">&quot;is not&quot;</span>)
+
+<span class="k">let</span> <span class="i">fsRegEx</span> <span class="o">=</span> <span class="k">new</span> <span class="i">FsRegEx</span>(<span class="s">@&quot;^[a-zA-Z0-9]\d{2}[a-zA-Z0-9](-\d{3}){2}[A-Za-z0-9]$&quot;</span>)
+
+<span class="k">for</span> <span class="i">partNumber</span> <span class="k">in</span> <span class="i">partNumbers</span> <span class="k">do</span>
+    <span class="i">printfn</span> <span class="s">&quot;%s %s a valid part number.&quot;</span>
+        <span class="i">partNumber</span>
+        (<span class="k">if</span> (<span class="i">fsRegEx</span><span class="o">.</span><span class="i">IsMatch</span>(<span class="i">partNumber</span>)) <span class="k">then</span> <span class="s">&quot;is&quot;</span> 
+            <span class="k">else</span> <span class="s">&quot;is not&quot;</span>)
+
+
+<span class="c">// 1298-673-4192 is a valid part number.</span>
+<span class="c">// A08Z-931-468A is a valid part number.</span>
+<span class="c">// _A90-123-129X is not a valid part number.</span>
+<span class="c">// 12345-KKA-1230 is not a valid part number.</span>
+<span class="c">// 0919-2893-1256 is not a valid part number.</span>
+</code></pre></td>
+</tr>
+</table>
+<h3><a name="is-match-starting-at-position" class="anchor" href="#is-match-starting-at-position">is match starting at position</a></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+<span class="l">25: </span>
+<span class="l">26: </span>
+<span class="l">27: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">labeledPartNumbers</span> <span class="o">=</span> [| <span class="s">&quot;Part Number: 1298-673-4192&quot;</span>; <span class="s">&quot;Part No: A08Z-931-468A&quot;</span>; 
+                        <span class="s">&quot;_A90-123-129X&quot;</span>; <span class="s">&quot;123K-000-1230&quot;</span>; 
+                        <span class="s">&quot;SKU: 0919-2893-1256&quot;</span> |]
+
+<span class="k">for</span> <span class="i">partNumber</span> <span class="k">in</span> <span class="i">labeledPartNumbers</span> <span class="k">do</span>
+    <span class="k">let</span> <span class="i">start</span> <span class="o">=</span> <span class="i">partNumber</span><span class="o">.</span><span class="i">IndexOf</span>(<span class="s">&#39;:&#39;</span>)
+    <span class="k">if</span> (<span class="i">start</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">0</span>) <span class="k">then</span>
+        <span class="i">printfn</span> <span class="s">&quot;%s %s a valid part number.&quot;</span>
+            <span class="i">partNumber</span>
+            (<span class="k">if</span> (<span class="i">F</span><span class="o">.</span><span class="i">isMatchAt</span> <span class="s">@&quot;^[a-zA-Z0-9]\d{2}[a-zA-Z0-9](-\d{3}){2}[A-Za-z0-9]$&quot;</span> <span class="i">start</span> <span class="i">partNumber</span>) <span class="k">then</span> <span class="s">&quot;is&quot;</span> <span class="k">else</span> <span class="s">&quot;is not&quot;</span>)
+    <span class="k">else</span>
+        <span class="i">printfn</span> <span class="s">&quot;Cannot find starting position in %s.&quot;</span> <span class="i">partNumber</span>
+
+<span class="k">for</span> <span class="i">partNumber</span> <span class="k">in</span> <span class="i">labeledPartNumbers</span> <span class="k">do</span>
+    <span class="k">let</span> <span class="i">start</span> <span class="o">=</span> <span class="i">partNumber</span><span class="o">.</span><span class="i">IndexOf</span>(<span class="s">&#39;:&#39;</span>)
+    <span class="k">if</span> (<span class="i">start</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">0</span>) <span class="k">then</span>
+        <span class="i">printfn</span> <span class="s">&quot;%s %s a valid part number.&quot;</span>
+            <span class="i">partNumber</span>
+            (<span class="k">if</span> (<span class="i">fsRegEx</span><span class="o">.</span><span class="i">IsMatch</span>(<span class="i">partNumber</span>, <span class="i">start</span>)) <span class="k">then</span> <span class="s">&quot;is&quot;</span> <span class="k">else</span> <span class="s">&quot;is not&quot;</span>)
+    <span class="k">else</span>
+        <span class="i">printfn</span> <span class="s">&quot;Cannot find starting position in %s.&quot;</span> <span class="i">partNumber</span>
+
+<span class="c">// Part Number: 1298-673-4192 is a valid part number.</span>
+<span class="c">// Part No: A08Z-931-468A is a valid part number.</span>
+<span class="c">// Cannot find starting position in _A90-123-129X.</span>
+<span class="c">// Cannot find starting position in 123K-000-1230.</span>
+<span class="c">// SKU: 0919-2893-1256 is not a valid part number.</span>
+</code></pre></td>
+</tr>
+</table>
+<h2><a name="FsMatch" class="anchor" href="#FsMatch">FsMatch</a></h2>
+<p><code>FsMatch</code> provides the functionality in the <code>System.Text.RegularExpressions.Match</code> Class, but returning arrays of objects instead of special collections.</p>
+<h3><a name="iterate-over-matches" class="anchor" href="#iterate-over-matches">iterate over matches</a></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="s">&quot;Who writes these notes?&quot;</span>
+<span class="o">|&gt;</span> <span class="i">FsRegEx</span><span class="o">.</span><span class="i">matches</span> <span class="s">@&quot;\b\w+es\b&quot;</span>
+<span class="o">|&gt;</span> <span class="i">Array</span><span class="o">.</span><span class="i">iter</span> (<span class="k">fun</span> <span class="i">m</span> <span class="k">-&gt;</span> <span class="i">printfn</span> <span class="s">&quot;Found &#39;%s&#39; at position %i&quot;</span> <span class="i">m</span><span class="o">.</span><span class="i">Value</span> <span class="i">m</span><span class="o">.</span><span class="i">Index</span>)
+
+<span class="c">// Found &#39;writes&#39; at position 4</span>
+<span class="c">// Found &#39;notes&#39; at position 17</span>
+</code></pre></td>
+</tr>
+</table>
+<h3><a name="first-match-and-iteration" class="anchor" href="#first-match-and-iteration">first match and iteration</a></h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">regExpr</span> <span class="o">=</span> <span class="s">@&quot;\b\w+es\b&quot;</span>
+<span class="k">let</span> <span class="i">sentence</span> <span class="o">=</span> <span class="s">&quot;Who writes these notes and uses our paper?&quot;</span>
+
+<span class="k">let</span> <span class="i">m</span> <span class="o">=</span> <span class="i">FsRegEx</span><span class="o">.</span><span class="i">firstMatch</span> <span class="i">regExpr</span> <span class="i">sentence</span>
+
+<span class="k">if</span> <span class="i">m</span><span class="o">.</span><span class="i">Success</span> <span class="k">then</span>
+    <span class="i">printfn</span> <span class="s">&quot;Found first &#39;es&#39; in &#39;%s&#39; at position %i&quot;</span> <span class="i">m</span><span class="o">.</span><span class="i">Value</span> <span class="i">m</span><span class="o">.</span><span class="i">Index</span>
+    <span class="i">sentence</span>
+    <span class="o">|&gt;</span> <span class="i">FsRegEx</span><span class="o">.</span><span class="i">matchesAt</span> <span class="i">regExpr</span> (<span class="i">m</span><span class="o">.</span><span class="i">Index</span> <span class="o">+</span> <span class="i">m</span><span class="o">.</span><span class="i">Length</span>)
+    <span class="o">|&gt;</span> <span class="i">Array</span><span class="o">.</span><span class="i">iter</span> (<span class="k">fun</span> <span class="i">m</span> <span class="k">-&gt;</span> <span class="i">printfn</span> <span class="s">&quot;Also found &#39;%s&#39; at position %i&quot;</span> <span class="i">m</span><span class="o">.</span><span class="i">Value</span> <span class="i">m</span><span class="o">.</span><span class="i">Index</span>)
+
+<span class="c">// Found first &#39;es&#39; in &#39;writes&#39; at position 4</span>
+<span class="c">// Also found &#39;notes&#39; at position 17</span>
+<span class="c">// Also found &#39;uses&#39; at position 27</span>
+</code></pre></td>
+</tr>
+</table>
+
+
+        </div>
+        <div class="span3">
+          <img src="/FsRegEx/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
+            <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+                <li class="nav-header">FsRegEx</li>
+                <li><a href="/FsRegEx/index.html">Home page</a></li>
+                <li class="divider"></li>
+                <li><a href="http://nuget.org/packages/FsRegEx">Get Library via NuGet</a></li>
+                <li><a href="https://github.com/jackfoxy/FsRegEx">Source Code on GitHub</a></li>
+                <li><a href="/FsRegEx/license.html">License</a></li>
+                <li><a href="/FsRegEx/release-notes.html">Release Notes</a></li>
+
+                <li class="nav-header">Examples</li>
+                <li><a href="/FsRegEx/matching.html">Matching</a></li>
+                <li><a href="/FsRegEx/group.html">Match Groups</a></li>
+                <li><a href="/FsRegEx/replacesplit.html">Replace and Split</a></li>
+                <li><a href="/FsRegEx/capture.html">Capture</a></li>
+
+                <li class="nav-header">Documentation</li>
+                <li><a href="/FsRegEx/reference/index.html">API Reference</a></li>
+
+                <li class="nav-header">More...</li>
+                <li><a href="/FsRegEx/emailregex.html">On the Futility of Email Regex Validation</a></li>
+                <li><a href="/FsRegEx/tutorial.html">F# Verbal Expressions Tutorial</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/jackfoxy/FsRegEx"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+  </body>
+  </html>
