@@ -171,9 +171,9 @@ FsRegEx is available under Public Domain license, which allows modification and
 redistribution for both commercial and non-commercial purposes. For more information see the 
 [License file][license] in the GitHub repository. 
 
-  [content]: http://github.com/VerbalExpressions/FSharpVerbalExpressions/tree/master/docs/content
-  [gh]: http://github.com/VerbalExpressions/FSharpVerbalExpressions
-  [issues]: http://github.com/VerbalExpressions/FSharpVerbalExpressions/issues
-  [readme]: http://github.com/VerbalExpressions/FSharpVerbalExpressions/blob/master/README.md
-  [license]: http://github.com/VerbalExpressions/FSharpVerbalExpressions/blob/master/LICENSE.txt
+  [content]: http://github.com/jackfoxy/FsRegEx/tree/master/docs/content
+  [gh]: http://github.com/jackfoxy/FsRegEx
+  [issues]: http://github.com/jackfoxy/FsRegEx/issues
+  [readme]: http://github.com/jackfoxy/FsRegEx/blob/master/README.md
+  [license]: http://github.com/jackfoxy/FsRegEx/blob/master/LICENSE.txt
 *)

@@ -2,25 +2,16 @@
 
 open Expecto
 
-//to do: @ is present, not start or end
-        //      no illegal characters
         // https://tools.ietf.org/html/rfc2822
         // https://tools.ietf.org/html/rfc2822#section-3.2.4
         // https://tools.ietf.org/html/rfc2822#section-3.4.1
+        // ( see also RFC 5322 )
+        //
         // http://www.ex-parrot.com/pdw/Mail-RFC822-Address.html
         //
         // http://emailregex.com/
-        // ( see also RFC 5322 )
-        //  [a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?
-
+        //
         // http://stackoverflow.com/questions/297420/list-of-email-addresses-that-can-be-used-to-test-a-javascript-validation-script
-
-//        let emailValid = new VerbEx("""[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?""")
-//        match emailValid.IsMatch email with
-//        | true -> Success ()
-//        | false -> 
-//            (caller, sprintf "%s is not a valid email address" email)
-//            |> Failure
 
 /// RFC822 tests from http://code.iamcal.com/php/rfc822/tests/
 module RFC822 =

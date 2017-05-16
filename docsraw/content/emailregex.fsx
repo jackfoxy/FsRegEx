@@ -27,7 +27,7 @@ Obsoletes:  RFC 733
 
 Obsoletes: RFC 822
 
-[RFC 5322] (http://www.ietf.org/rfc/rfc5322.txt) Internet Message Format, October 2008
+[RFC 5322](http://www.ietf.org/rfc/rfc5322.txt) Internet Message Format, October 2008
 
 Obsoletes: RFC 2822
 
@@ -39,46 +39,46 @@ which we have converted to run under FsRegEx. The PHP parser author claims a muc
 any regular expression, although still not perfect. The site also provides more background on the "muddy" internet specification. 
 
 The suite consists of 280 validataion tests, which we converted to [Expecto](https://github.com/haf/expecto) tests 
-[here](http://github.com/VerbalExpressions/FSharpVerbalExpressions/blob/master/tests/Email.Tests/RFC822.fs). Run with the 
-[Email.Tests](http://github.com/VerbalExpressions/FSharpVerbalExpressions/blob/master/tests/Email.Tests.fsproj) console app.
+[here](http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/RFC822.fs). Run with the 
+[Email.Tests](http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/Email.Tests.fsproj) console app.
 
 We chose some email parsing regular expressions available on the internet for testing:
 
-[Simple](http://github.com/VerbalExpressions/FSharpVerbalExpressions/blob/master/tests/Email.Tests/SimpleEmail.fs), from [emailregex.com](http://emailregex.com/).
+[Simple](http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/SimpleEmail.fs), from [emailregex.com](http://emailregex.com/).
 
-[Moderate](http://github.com/VerbalExpressions/FSharpVerbalExpressions/blob/master/tests/Email.Tests/ModerateEmail.fs), from [emailregex.com](http://emailregex.com/).
+[Moderate](http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/ModerateEmail.fs), from [emailregex.com](http://emailregex.com/).
 
-[Complex](http://github.com/VerbalExpressions/FSharpVerbalExpressions/blob/master/tests/Email.Tests/ComplexEmail.fs), from [emailregex.com](http://emailregex.com/).
+[Complex](http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/ComplexEmail.fs), from [emailregex.com](http://emailregex.com/).
 
-[Ultimate](http://github.com/VerbalExpressions/FSharpVerbalExpressions/blob/master/tests/Email.Tests/Ultimate.fs), from
+[Ultimate](http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/Ultimate.fs), from
 [Mail::RFC822::Address: regexp-based address validation](http://www.ex-parrot.com/pdw/Mail-RFC822-Address.html). This regular expression was machine generated.
 
 Note that [emailregex.com](http://emailregex.com/) headlines "Email Address Regular Expression That 99.99% Works". The site offers many different
 email address regular expressions. Apparently we never found the one that works 99.99% on our test suite.
 
 We also tested a much simpler (non-regular expression) checker, that simply tests string for a single ampersand that is not wrapped in quotes and is not either
-the first or last character in the string [here](http://github.com/VerbalExpressions/FSharpVerbalExpressions/blob/master/tests/Email.Tests/OneAmp.fs).
+the first or last character in the string [here](http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/OneAmp.fs).
 
 Results
 -------
 
-Simple: 
+**Simple**: 
 
 132 passed, 148 failed, 98 false negatives
 
-Moderate:
+**Moderate**:
 
 190 passed, 90 failed, 72 false negatives
 
-Complex:
+**Complex**:
 
 172 passed, 108 failed, 60 false negatives
 
-Ultimate:
+**Ultimate**:
 
 170 passed, 110 failed, 11 false negatives
 
-One Ampersand:
+**One Ampersand**:
 
 162 passed, 118 failed, 1 false negative (test166)
 

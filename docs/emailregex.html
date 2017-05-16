@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>On the Futility of Email Regex Validation
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Composable F# regular expressions."/>
+    <meta name="author" content="Jack Fox"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <link type="text/css" rel="stylesheet" href="/FsRegEx/content/style.css" />
+    <script type="text/javascript" src="/FsRegEx/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/jackfoxy/FsRegEx">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FsRegEx/index.html">FsRegEx</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+<h1><a name="On-the-Futility-of-Email-Regex-Validation" class="anchor" href="#On-the-Futility-of-Email-Regex-Validation">On the Futility of Email Regex Validation</a></h1>
+<p>Using regular expressions to validate email addresses is notoriously error prone.
+The complexity of the address format specification makes constructing a machine readable
+grammar correctly discerning the difference between valid and invalid addresses hard.</p>
+<h2><a name="Evolution-of-the-Internet-Message-Format" class="anchor" href="#Evolution-of-the-Internet-Message-Format">Evolution of the Internet Message Format</a></h2>
+<p><a href="http://www.ietf.org/rfc/rfc0561.txt">RFC 561</a> Standardizing Network Mail Headers, September 5, 1973</p>
+<p><a href="http://www.ietf.org/rfc/rfc0680.txt">RFC 680</a> Message Transmission Protocol, April 30, 1975</p>
+<p><a href="http://www.ietf.org/rfc/rfc0724.txt">RFC 724</a> Proposed Official Standard for the Format of ARPA Network Messages, May 12, 1977</p>
+<p><a href="http://www.ietf.org/rfc/rfc0733.txt">RFC 733</a> STANDARD FOR THE FORMAT OF ARPA NETWORK TEXT MESSAGES, November 21, 1977</p>
+<p>Obsoletes:  RFC 561, RFC 680, RFC 724</p>
+<p><a href="http://www.ietf.org/rfc/rfc0822.txt">RFC 822</a> STANDARD FOR THE FORMAT OF ARPA INTERNET TEXT MESSAGES, August 13, 1982</p>
+<p>Obsoletes:  RFC 733</p>
+<p><a href="http://www.ietf.org/rfc/rfc2822.txt">RFC 2822</a> Internet Message Format, April 2001</p>
+<p>Obsoletes: RFC 822</p>
+<p><a href="http://www.ietf.org/rfc/rfc5322.txt">RFC 5322</a> Internet Message Format, October 2008</p>
+<p>Obsoletes: RFC 2822</p>
+<h2><a name="Testing-Regular-Expressions-that-Parse-Email-Addresses" class="anchor" href="#Testing-Regular-Expressions-that-Parse-Email-Addresses">Testing Regular Expressions that Parse Email Addresses</a></h2>
+<p>The tests are derived from a suite of tests available at <a href="http://code.iamcal.com/php/rfc822/">RFC 822 Email Address Parser in PHP</a>,
+which we have converted to run under FsRegEx. The PHP parser author claims a much better success rate than we were able to achieve with
+any regular expression, although still not perfect. The site also provides more background on the "muddy" internet specification.</p>
+<p>The suite consists of 280 validataion tests, which we converted to <a href="https://github.com/haf/expecto">Expecto</a> tests
+<a href="http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/RFC822.fs">here</a>. Run with the
+<a href="http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/Email.Tests.fsproj">Email.Tests</a> console app.</p>
+<p>We chose some email parsing regular expressions available on the internet for testing:</p>
+<p><a href="http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/SimpleEmail.fs">Simple</a>, from <a href="http://emailregex.com/">emailregex.com</a>.</p>
+<p><a href="http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/ModerateEmail.fs">Moderate</a>, from <a href="http://emailregex.com/">emailregex.com</a>.</p>
+<p><a href="http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/ComplexEmail.fs">Complex</a>, from <a href="http://emailregex.com/">emailregex.com</a>.</p>
+<p><a href="http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/Ultimate.fs">Ultimate</a>, from
+<a href="http://www.ex-parrot.com/pdw/Mail-RFC822-Address.html">Mail::RFC822::Address: regexp-based address validation</a>. This regular expression was machine generated.</p>
+<p>Note that <a href="http://emailregex.com/">emailregex.com</a> headlines "Email Address Regular Expression That 99.99% Works". The site offers many different
+email address regular expressions. Apparently we never found the one that works 99.99% on our test suite.</p>
+<p>We also tested a much simpler (non-regular expression) checker, that simply tests string for a single ampersand that is not wrapped in quotes and is not either
+the first or last character in the string <a href="http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/OneAmp.fs">here</a>.</p>
+<h2><a name="Results" class="anchor" href="#Results">Results</a></h2>
+<p><strong>Simple</strong>:</p>
+<p>132 passed, 148 failed, 98 false negatives</p>
+<p><strong>Moderate</strong>:</p>
+<p>190 passed, 90 failed, 72 false negatives</p>
+<p><strong>Complex</strong>:</p>
+<p>172 passed, 108 failed, 60 false negatives</p>
+<p><strong>Ultimate</strong>:</p>
+<p>170 passed, 110 failed, 11 false negatives</p>
+<p><strong>One Ampersand</strong>:</p>
+<p>162 passed, 118 failed, 1 false negative (test166)</p>
+<h2><a name="Conclusion" class="anchor" href="#Conclusion">Conclusion</a></h2>
+<p>The evolution of the Internet Email Address specification and way it is documented make it impossible to settle on a completely deterministic grammar covering all cases.
+With that in mind it is already impossible to make any complete parser, let alone one based on a regular expression. That being said, the test results do not reflect
+the likelihood of meeting any of the 280 test cases in the wild.</p>
+<p>Simply determining if there is a correctly placed ampersand is perhaps the best filter for most practical purposes, given the importance of this criterion.
+(Note that even our attempt at rejecting multiple ampersands resulted in a false negative.)</p>
+
+
+        </div>
+        <div class="span3">
+          <img src="/FsRegEx/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
+            <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+                <li class="nav-header">FsRegEx</li>
+                <li><a href="/FsRegEx/index.html">Home page</a></li>
+                <li class="divider"></li>
+                <li><a href="http://nuget.org/packages/FsRegEx">Get Library via NuGet</a></li>
+                <li><a href="https://github.com/jackfoxy/FsRegEx">Source Code on GitHub</a></li>
+                <li><a href="/FsRegEx/license.html">License</a></li>
+                <li><a href="/FsRegEx/release-notes.html">Release Notes</a></li>
+
+                <li class="nav-header">Examples</li>
+                <li><a href="/FsRegEx/matching.html">Matching</a></li>
+                <li><a href="/FsRegEx/group.html">Match Groups</a></li>
+                <li><a href="/FsRegEx/replacesplit.html">Replace and Split</a></li>
+                <li><a href="/FsRegEx/capture.html">Capture</a></li>
+
+                <li class="nav-header">Documentation</li>
+                <li><a href="/FsRegEx/reference/index.html">API Reference</a></li>
+
+                <li class="nav-header">More...</li>
+                <li><a href="/FsRegEx/emailregex.html">On the Futility of Email Regex Validation</a></li>
+                <li><a href="/FsRegEx/tutorial.html">F# Verbal Expressions Tutorial</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/jackfoxy/FsRegEx"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+  </body>
+  </html>
