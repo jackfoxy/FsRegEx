@@ -64,8 +64,8 @@ any regular expression, although still not perfect. The site also provides more 
 <a href="http://www.ex-parrot.com/pdw/Mail-RFC822-Address.html">Mail::RFC822::Address: regexp-based address validation</a>. This regular expression was machine generated.</p>
 <p>Note that <a href="http://emailregex.com/">emailregex.com</a> headlines "Email Address Regular Expression That 99.99% Works". The site offers many different
 email address regular expressions. Apparently we never found the one that works 99.99% on our test suite.</p>
-<p>We also tested a much simpler (non-regular expression) checker, that simply tests string for a single ampersand that is not wrapped in quotes and is not either
-the first or last character in the string <a href="http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/OneAmp.fs">here</a>.</p>
+<p>We also tested a much simpler (non-regular expression) checker, that simply tests string for a single at sign that is not wrapped in quotes and is not either
+the first or last character in the string <a href="http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/OneAtSign.fs">here</a>.</p>
 <h2><a name="Results" class="anchor" href="#Results">Results</a></h2>
 <p><strong>Simple</strong>:</p>
 <p>132 passed, 148 failed, 98 false negatives</p>
@@ -75,14 +75,14 @@ the first or last character in the string <a href="http://github.com/jackfoxy/Fs
 <p>172 passed, 108 failed, 60 false negatives</p>
 <p><strong>Ultimate</strong>:</p>
 <p>170 passed, 110 failed, 11 false negatives</p>
-<p><strong>One Ampersand</strong>:</p>
+<p><strong>One At Sign</strong>:</p>
 <p>162 passed, 118 failed, 1 false negative (test166)</p>
 <h2><a name="Conclusion" class="anchor" href="#Conclusion">Conclusion</a></h2>
 <p>The evolution of the Internet Email Address specification and way it is documented make it impossible to settle on a completely deterministic grammar covering all cases.
 With that in mind it is already impossible to make any complete parser, let alone one based on a regular expression. That being said, the test results do not reflect
 the likelihood of meeting any of the 280 test cases in the wild.</p>
-<p>Simply determining if there is a correctly placed ampersand is perhaps the best filter for most practical purposes, given the importance of this criterion.
-(Note that even our attempt at rejecting multiple ampersands resulted in a false negative.)</p>
+<p>Simply determining if there is a correctly placed at sign is perhaps the best filter for most practical purposes, given the importance of this criterion.
+(Note that even our attempt at rejecting multiple at signs resulted in a false negative.)</p>
 
 
         </div>
