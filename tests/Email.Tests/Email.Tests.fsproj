@@ -50,7 +50,7 @@
     <Compile Include="SimpleEmail.fs" />
     <Compile Include="ModerateEmail.fs" />
     <Compile Include="ComplexEmail.fs" />
-    <Compile Include="OneAmp.fs" />
+    <Compile Include="OneAtSign.fs" />
     <Compile Include="Ultimate.fs" />
     <Compile Include="RunTests.fs" />
     <None Include="paket.references" />

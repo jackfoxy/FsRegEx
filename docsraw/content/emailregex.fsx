@@ -56,8 +56,8 @@ We chose some email parsing regular expressions available on the internet for te
 Note that [emailregex.com](http://emailregex.com/) headlines "Email Address Regular Expression That 99.99% Works". The site offers many different
 email address regular expressions. Apparently we never found the one that works 99.99% on our test suite.
 
-We also tested a much simpler (non-regular expression) checker, that simply tests string for a single ampersand that is not wrapped in quotes and is not either
-the first or last character in the string [here](http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/OneAmp.fs).
+We also tested a much simpler (non-regular expression) checker, that simply tests string for a single at sign that is not wrapped in quotes and is not either
+the first or last character in the string [here](http://github.com/jackfoxy/FsRegEx/blob/master/tests/Email.Tests/OneAtSign.fs).
 
 Results
 -------
@@ -78,7 +78,7 @@ Results
 
 170 passed, 110 failed, 11 false negatives
 
-**One Ampersand**:
+**One At Sign**:
 
 162 passed, 118 failed, 1 false negative (test166)
 
@@ -89,6 +89,6 @@ The evolution of the Internet Email Address specification and way it is document
 With that in mind it is already impossible to make any complete parser, let alone one based on a regular expression. That being said, the test results do not reflect
 the likelihood of meeting any of the 280 test cases in the wild. 
 
-Simply determining if there is a correctly placed ampersand is perhaps the best filter for most practical purposes, given the importance of this criterion.
-(Note that even our attempt at rejecting multiple ampersands resulted in a false negative.)
+Simply determining if there is a correctly placed at sign is perhaps the best filter for most practical purposes, given the importance of this criterion.
+(Note that even our attempt at rejecting multiple at signs resulted in a false negative.)
 *)
