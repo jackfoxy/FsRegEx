@@ -78,14 +78,14 @@ The underlying object can always be returned from the wrapper.</p>
 <span class="l">11: </span>
 <span class="l">12: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span class="i">FsRegEx</span>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="m">FsRegEx</span>
 
-<span class="k">let</span> <span class="i">carRegExp</span> <span class="o">=</span> <span class="s">@&quot;(\w+)\s+(car)&quot;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">carRegExp</span> <span class="o">=</span> <span class="s">@&quot;(\w+)\s+(car)&quot;</span>
 
-<span class="i">sprintf</span> <span class="s">&quot;%s %s %s&quot;</span> <span class="s">&quot;One car&quot;</span> <span class="s">&quot;red car&quot;</span> <span class="s">&quot;blue car&quot;</span>
-<span class="o">|&gt;</span> <span class="i">matches</span> <span class="i">carRegExp</span>
-<span class="o">|&gt;</span> <span class="i">Array</span><span class="o">.</span><span class="i">map</span> (<span class="k">fun</span> <span class="i">m</span> <span class="k">-&gt;</span> <span class="i">m</span><span class="o">.</span><span class="i">Value</span>)
-<span class="o">|&gt;</span> <span class="i">Array</span><span class="o">.</span><span class="i">iter</span>(<span class="k">fun</span> <span class="i">x</span> <span class="k">-&gt;</span> <span class="i">printfn</span> <span class="s">&quot;%s&quot;</span> <span class="i">x</span>)
+<span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="fn">sprintf</span> <span class="s">&quot;</span><span class="pf">%s</span><span class="s"> </span><span class="pf">%s</span><span class="s"> </span><span class="pf">%s</span><span class="s">&quot;</span> <span class="s">&quot;One car&quot;</span> <span class="s">&quot;red car&quot;</span> <span class="s">&quot;blue car&quot;</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="fn">matches</span> <span onmouseout="hideTip(event, 'fs2', 5)" onmouseover="showTip(event, 'fs2', 5)" class="id">carRegExp</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="id">map</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="id">m</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="id">m</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="id">Value</span><span class="pn">)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 11)" onmouseover="showTip(event, 'fs5', 11)" class="m">Array</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 12)" onmouseover="showTip(event, 'fs9', 12)" class="id">iter</span><span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="id">x</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs11', 14)" onmouseover="showTip(event, 'fs11', 14)" class="fn">printfn</span> <span class="s">&quot;</span><span class="pf">%s</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs10', 15)" onmouseover="showTip(event, 'fs10', 15)" class="id">x</span><span class="pn">)</span>
 
 <span class="c">// One car</span>
 <span class="c">// red car</span>
@@ -103,12 +103,12 @@ The underlying object can always be returned from the wrapper.</p>
 <span class="l">7: </span>
 <span class="l">8: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">groupNumberRegExp</span> <span class="o">=</span> <span class="s">@&quot;COD(?&lt;GroupNumber&gt;[0-9]{3})END&quot;</span>
-<span class="k">let</span> <span class="i">groupNumberName</span> <span class="o">=</span> <span class="s">&quot;GroupNumber&quot;</span>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs12', 16)" onmouseover="showTip(event, 'fs12', 16)" class="id">groupNumberRegExp</span> <span class="o">=</span> <span class="s">@&quot;COD(?&lt;GroupNumber&gt;[0-9]{3})END&quot;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs13', 17)" onmouseover="showTip(event, 'fs13', 17)" class="id">groupNumberName</span> <span class="o">=</span> <span class="s">&quot;GroupNumber&quot;</span>
 
-<span class="i">sprintf</span> <span class="s">&quot;%s&quot;</span> <span class="s">&quot;COD123END&quot;</span>
-<span class="o">|&gt;</span> <span class="i">capture</span> <span class="i">groupNumberRegExp</span> <span class="i">groupNumberName</span>
-<span class="o">|&gt;</span> <span class="i">printfn</span> <span class="s">&quot;%s&quot;</span>
+<span onmouseout="hideTip(event, 'fs3', 18)" onmouseover="showTip(event, 'fs3', 18)" class="fn">sprintf</span> <span class="s">&quot;</span><span class="pf">%s</span><span class="s">&quot;</span> <span class="s">&quot;COD123END&quot;</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs14', 19)" onmouseover="showTip(event, 'fs14', 19)" class="fn">capture</span> <span onmouseout="hideTip(event, 'fs12', 20)" onmouseover="showTip(event, 'fs12', 20)" class="id">groupNumberRegExp</span> <span onmouseout="hideTip(event, 'fs13', 21)" onmouseover="showTip(event, 'fs13', 21)" class="id">groupNumberName</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 22)" onmouseover="showTip(event, 'fs11', 22)" class="fn">printfn</span> <span class="s">&quot;</span><span class="pf">%s</span><span class="s">&quot;</span>
 
 <span class="c">// 123</span>
 </code></pre></td>
@@ -134,21 +134,21 @@ The underlying object can always be returned from the wrapper.</p>
 <span class="l">16: </span>
 <span class="l">17: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span class="i">FsRegEx</span>
-<span class="k">open</span> <span class="i">System</span><span class="o">.</span><span class="i">Text</span><span class="o">.</span><span class="i">RegularExpressions</span>
-<span class="k">open</span> <span class="i">VerbalExpressions</span>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs15', 23)" onmouseover="showTip(event, 'fs15', 23)" class="m">FsRegEx</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs16', 24)" onmouseover="showTip(event, 'fs16', 24)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 25)" onmouseover="showTip(event, 'fs17', 25)" class="id">Text</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 26)" onmouseover="showTip(event, 'fs18', 26)" class="id">RegularExpressions</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs19', 27)" onmouseover="showTip(event, 'fs19', 27)" class="m">VerbalExpressions</span>
 
-<span class="k">let</span> <span class="i">groupName</span> <span class="o">=</span>  <span class="s">&quot;GroupNumber&quot;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs20', 28)" onmouseover="showTip(event, 'fs20', 28)" class="id">groupName</span> <span class="o">=</span>  <span class="s">&quot;GroupNumber&quot;</span>
  
-<span class="i">FsRegEx</span>()
-<span class="o">|&gt;</span> <span class="i">add</span> <span class="s">&quot;COD&quot;</span>
-<span class="o">|&gt;</span> <span class="i">beginCaptureNamed</span> <span class="i">groupName</span>
-<span class="o">|&gt;</span> <span class="i">any</span> <span class="s">&quot;0-9&quot;</span>
-<span class="o">|&gt;</span> <span class="i">repeatPrevious</span> <span class="n">3</span>
-<span class="o">|&gt;</span> <span class="i">endCapture</span>
-<span class="o">|&gt;</span> <span class="i">then&#39;</span> <span class="s">&quot;END&quot;</span>
-<span class="o">|&gt;</span> <span class="i">capture</span> <span class="s">&quot;COD123END&quot;</span> <span class="i">groupName</span>
-<span class="o">|&gt;</span> <span class="i">printfn</span> <span class="s">&quot;%s&quot;</span>
+<span onmouseout="hideTip(event, 'fs21', 29)" onmouseover="showTip(event, 'fs21', 29)" class="rt">FsRegEx</span><span class="pn">(</span><span class="pn">)</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs22', 30)" onmouseover="showTip(event, 'fs22', 30)" class="fn">add</span> <span class="s">&quot;COD&quot;</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs23', 31)" onmouseover="showTip(event, 'fs23', 31)" class="fn">beginCaptureNamed</span> <span onmouseout="hideTip(event, 'fs20', 32)" onmouseover="showTip(event, 'fs20', 32)" class="id">groupName</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs24', 33)" onmouseover="showTip(event, 'fs24', 33)" class="fn">any</span> <span class="s">&quot;0-9&quot;</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs25', 34)" onmouseover="showTip(event, 'fs25', 34)" class="fn">repeatPrevious</span> <span class="n">3</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs26', 35)" onmouseover="showTip(event, 'fs26', 35)" class="fn">endCapture</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs27', 36)" onmouseover="showTip(event, 'fs27', 36)" class="fn">then&#39;</span> <span class="s">&quot;END&quot;</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs28', 37)" onmouseover="showTip(event, 'fs28', 37)" class="fn">capture</span> <span class="s">&quot;COD123END&quot;</span> <span onmouseout="hideTip(event, 'fs20', 38)" onmouseover="showTip(event, 'fs20', 38)" class="id">groupName</span>
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 39)" onmouseover="showTip(event, 'fs11', 39)" class="fn">printfn</span> <span class="s">&quot;</span><span class="pf">%s</span><span class="s">&quot;</span>
 
 <span class="c">// 123</span>
 </code></pre></td>
@@ -173,21 +173,21 @@ The underlying object can always be returned from the wrapper.</p>
 <span class="l">16: </span>
 <span class="l">17: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">TestConnString</span> <span class="o">=</span> 
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs29', 40)" onmouseover="showTip(event, 'fs29', 40)" class="id">TestConnString</span> <span class="o">=</span> 
     <span class="s">&quot;&quot;&quot;&lt;add name=&quot;MyConnString&quot; connectionString=&quot;Server=MyServer;Database=MyDatabase;User ID=me;Password=secret;Encrypt=True;TrustServerCertificate=True;Enlist=False;&quot; /&gt;&quot;&quot;&quot;</span>
 
-<span class="k">let</span> <span class="i">databaseFromRegex</span> <span class="i">connectionString</span> <span class="o">=</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs30', 41)" onmouseover="showTip(event, 'fs30', 41)" class="fn">databaseFromRegex</span> <span onmouseout="hideTip(event, 'fs31', 42)" onmouseover="showTip(event, 'fs31', 42)" class="id">connectionString</span> <span class="o">=</span>
         
-    <span class="i">Regex</span><span class="o">.</span><span class="i">Match</span>(<span class="i">connectionString</span>, <span class="s">&quot;[dD]atabase=(?&lt;database&gt;.*?);&quot;</span>)<span class="o">.</span><span class="i">Groups</span><span class="o">.</span>[<span class="s">&quot;database&quot;</span>]<span class="o">.</span><span class="i">Value</span>
+    <span onmouseout="hideTip(event, 'fs32', 43)" onmouseover="showTip(event, 'fs32', 43)" class="rt">Regex</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs33', 44)" onmouseover="showTip(event, 'fs33', 44)" class="id">Match</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs31', 45)" onmouseover="showTip(event, 'fs31', 45)" class="id">connectionString</span><span class="pn">,</span> <span class="s">&quot;[dD]atabase=(?&lt;database&gt;.*?);&quot;</span><span class="pn">)</span><span class="pn">.</span><span class="id">Groups</span><span class="pn">.</span><span class="pn">[</span><span class="s">&quot;database&quot;</span><span class="pn">]</span><span class="pn">.</span><span class="id">Value</span>
 
-<span class="k">let</span> <span class="i">databaseFromFsRegEx</span> <span class="i">connectionString</span> <span class="o">=</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 46)" onmouseover="showTip(event, 'fs34', 46)" class="fn">databaseFromFsRegEx</span> <span onmouseout="hideTip(event, 'fs31', 47)" onmouseover="showTip(event, 'fs31', 47)" class="id">connectionString</span> <span class="o">=</span>
 
-    <span class="i">FsRegEx</span>()
-    <span class="o">|&gt;</span> <span class="i">add</span> <span class="s">&quot;[dD]atabase=(?&lt;database&gt;.*?);&quot;</span>
-    <span class="o">|&gt;</span> <span class="i">capture</span> <span class="i">connectionString</span> <span class="s">&quot;database&quot;</span>
+    <span onmouseout="hideTip(event, 'fs21', 48)" onmouseover="showTip(event, 'fs21', 48)" class="rt">FsRegEx</span><span class="pn">(</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs22', 49)" onmouseover="showTip(event, 'fs22', 49)" class="fn">add</span> <span class="s">&quot;[dD]atabase=(?&lt;database&gt;.*?);&quot;</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs28', 50)" onmouseover="showTip(event, 'fs28', 50)" class="fn">capture</span> <span onmouseout="hideTip(event, 'fs31', 51)" onmouseover="showTip(event, 'fs31', 51)" class="id">connectionString</span> <span class="s">&quot;database&quot;</span>
 
-(<span class="i">databaseFromRegex</span> <span class="i">TestConnString</span>) <span class="o">=</span> (<span class="i">databaseFromFsRegEx</span> <span class="i">TestConnString</span>) 
-<span class="o">|&gt;</span> <span class="i">printfn</span> <span class="s">&quot;%b&quot;</span>
+<span class="pn">(</span><span onmouseout="hideTip(event, 'fs30', 52)" onmouseover="showTip(event, 'fs30', 52)" class="fn">databaseFromRegex</span> <span onmouseout="hideTip(event, 'fs29', 53)" onmouseover="showTip(event, 'fs29', 53)" class="id">TestConnString</span><span class="pn">)</span> <span class="o">=</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs34', 54)" onmouseover="showTip(event, 'fs34', 54)" class="fn">databaseFromFsRegEx</span> <span onmouseout="hideTip(event, 'fs29', 55)" onmouseover="showTip(event, 'fs29', 55)" class="id">TestConnString</span><span class="pn">)</span> 
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 56)" onmouseover="showTip(event, 'fs11', 56)" class="fn">printfn</span> <span class="s">&quot;</span><span class="pf">%b</span><span class="s">&quot;</span>
 
 <span class="c">// true</span>
 </code></pre></td>
@@ -210,19 +210,19 @@ The underlying object can always be returned from the wrapper.</p>
 <span class="l">14: </span>
 <span class="l">15: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">databaseFromVerboseFsRegEx</span> <span class="i">connectionString</span> <span class="o">=</span>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs35', 57)" onmouseover="showTip(event, 'fs35', 57)" class="fn">databaseFromVerboseFsRegEx</span> <span onmouseout="hideTip(event, 'fs31', 58)" onmouseover="showTip(event, 'fs31', 58)" class="id">connectionString</span> <span class="o">=</span>
 
-    <span class="i">FsRegEx</span>()
-    <span class="o">|&gt;</span> <span class="i">anyOf</span> <span class="s">&quot;dD&quot;</span>
-    <span class="o">|&gt;</span> <span class="i">then&#39;</span> <span class="s">&quot;atabase=&quot;</span>
-    <span class="o">|&gt;</span> <span class="i">beginCaptureNamed</span> <span class="s">&quot;database&quot;</span>
-    <span class="o">|&gt;</span> <span class="i">add</span> <span class="s">&quot;.*?&quot;</span>
-    <span class="o">|&gt;</span> <span class="i">endCapture</span>
-    <span class="o">|&gt;</span> <span class="i">then&#39;</span> <span class="s">&quot;;&quot;</span>
-    <span class="o">|&gt;</span> <span class="i">capture</span> <span class="i">connectionString</span> <span class="s">&quot;database&quot;</span>
+    <span onmouseout="hideTip(event, 'fs21', 59)" onmouseover="showTip(event, 'fs21', 59)" class="rt">FsRegEx</span><span class="pn">(</span><span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs36', 60)" onmouseover="showTip(event, 'fs36', 60)" class="fn">anyOf</span> <span class="s">&quot;dD&quot;</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs27', 61)" onmouseover="showTip(event, 'fs27', 61)" class="fn">then&#39;</span> <span class="s">&quot;atabase=&quot;</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs23', 62)" onmouseover="showTip(event, 'fs23', 62)" class="fn">beginCaptureNamed</span> <span class="s">&quot;database&quot;</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs22', 63)" onmouseover="showTip(event, 'fs22', 63)" class="fn">add</span> <span class="s">&quot;.*?&quot;</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs26', 64)" onmouseover="showTip(event, 'fs26', 64)" class="fn">endCapture</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs27', 65)" onmouseover="showTip(event, 'fs27', 65)" class="fn">then&#39;</span> <span class="s">&quot;;&quot;</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs28', 66)" onmouseover="showTip(event, 'fs28', 66)" class="fn">capture</span> <span onmouseout="hideTip(event, 'fs31', 67)" onmouseover="showTip(event, 'fs31', 67)" class="id">connectionString</span> <span class="s">&quot;database&quot;</span>
 
-(<span class="i">databaseFromRegex</span> <span class="i">TestConnString</span>) <span class="o">=</span> (<span class="i">databaseFromVerboseFsRegEx</span> <span class="i">TestConnString</span>) 
-<span class="o">|&gt;</span> <span class="i">printfn</span> <span class="s">&quot;%b&quot;</span>
+<span class="pn">(</span><span onmouseout="hideTip(event, 'fs30', 68)" onmouseover="showTip(event, 'fs30', 68)" class="fn">databaseFromRegex</span> <span onmouseout="hideTip(event, 'fs29', 69)" onmouseover="showTip(event, 'fs29', 69)" class="id">TestConnString</span><span class="pn">)</span> <span class="o">=</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs35', 70)" onmouseover="showTip(event, 'fs35', 70)" class="fn">databaseFromVerboseFsRegEx</span> <span onmouseout="hideTip(event, 'fs29', 71)" onmouseover="showTip(event, 'fs29', 71)" class="id">TestConnString</span><span class="pn">)</span> 
+<span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs11', 72)" onmouseover="showTip(event, 'fs11', 72)" class="fn">printfn</span> <span class="s">&quot;</span><span class="pf">%b</span><span class="s">&quot;</span>
 
 <span class="c">// true</span>
 </code></pre></td>
@@ -248,6 +248,42 @@ the project, and submit pull requests, so long as pull requests:</p>
 redistribution for both commercial and non-commercial purposes. For more information see the
 <a href="http://github.com/jackfoxy/FsRegEx/blob/master/LICENSE.txt">License file</a> in the GitHub repository.</p>
 
+<div class="tip" id="fs1">module FsRegEx</div>
+<div class="tip" id="fs2">val carRegExp : string</div>
+<div class="tip" id="fs3">val sprintf : format:Printf.StringFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
+<div class="tip" id="fs4">val matches : regularExpression:string -&gt; input:string -&gt; FsMatch []</div>
+<div class="tip" id="fs5">module Array<br /><br />from Microsoft.FSharp.Collections</div>
+<div class="tip" id="fs6">val map : mapping:(&#39;T -&gt; &#39;U) -&gt; array:&#39;T [] -&gt; &#39;U []</div>
+<div class="tip" id="fs7">val m : FsMatch</div>
+<div class="tip" id="fs8">property FsMatch.Value: string</div>
+<div class="tip" id="fs9">val iter : action:(&#39;T -&gt; unit) -&gt; array:&#39;T [] -&gt; unit</div>
+<div class="tip" id="fs10">val x : string</div>
+<div class="tip" id="fs11">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
+<div class="tip" id="fs12">val groupNumberRegExp : string</div>
+<div class="tip" id="fs13">val groupNumberName : string</div>
+<div class="tip" id="fs14">val capture : regularExpression:string -&gt; groupName:string -&gt; input:string -&gt; string</div>
+<div class="tip" id="fs15">Multiple items<br />module FsRegEx<br /><br />--------------------<br />type FsRegEx =<br />&#160;&#160;new : unit -&gt; FsRegEx<br />&#160;&#160;new : regularExpression:string -&gt; FsRegEx<br />&#160;&#160;new : regexOptions:RegexOptions -&gt; FsRegEx<br />&#160;&#160;new : regularExpression:string * regexOptions:RegexOptions -&gt; FsRegEx<br />&#160;&#160;new : regularExpression:string * regexOptions:RegexOptions * matchTimeout:TimeSpan -&gt; FsRegEx<br />&#160;&#160;member Capture : input:string -&gt; string -&gt; string<br />&#160;&#160;member private Clone : regexOptions:RegexOptions option -&gt; FsRegEx<br />&#160;&#160;member GroupNameFromNumber : n:int -&gt; string option<br />&#160;&#160;member GroupNames : unit -&gt; string array<br />&#160;&#160;member GroupNumberFromName : groupName:string -&gt; int option<br />&#160;&#160;...<br /><br />--------------------<br />new : unit -&gt; FsRegEx<br />new : regexOptions:System.Text.RegularExpressions.RegexOptions -&gt; FsRegEx<br />new : regularExpression:string -&gt; FsRegEx<br />new : regularExpression:string * regexOptions:System.Text.RegularExpressions.RegexOptions -&gt; FsRegEx<br />new : regularExpression:string * regexOptions:System.Text.RegularExpressions.RegexOptions * matchTimeout:System.TimeSpan -&gt; FsRegEx</div>
+<div class="tip" id="fs16">namespace System</div>
+<div class="tip" id="fs17">namespace System.Text</div>
+<div class="tip" id="fs18">namespace System.Text.RegularExpressions</div>
+<div class="tip" id="fs19">module VerbalExpressions</div>
+<div class="tip" id="fs20">val groupName : string</div>
+<div class="tip" id="fs21">Multiple items<br />module FsRegEx<br /><br />--------------------<br />type FsRegEx =<br />&#160;&#160;new : unit -&gt; FsRegEx<br />&#160;&#160;new : regularExpression:string -&gt; FsRegEx<br />&#160;&#160;new : regexOptions:RegexOptions -&gt; FsRegEx<br />&#160;&#160;new : regularExpression:string * regexOptions:RegexOptions -&gt; FsRegEx<br />&#160;&#160;new : regularExpression:string * regexOptions:RegexOptions * matchTimeout:TimeSpan -&gt; FsRegEx<br />&#160;&#160;member Capture : input:string -&gt; string -&gt; string<br />&#160;&#160;member private Clone : regexOptions:RegexOptions option -&gt; FsRegEx<br />&#160;&#160;member GroupNameFromNumber : n:int -&gt; string option<br />&#160;&#160;member GroupNames : unit -&gt; string array<br />&#160;&#160;member GroupNumberFromName : groupName:string -&gt; int option<br />&#160;&#160;...<br /><br />--------------------<br />new : unit -&gt; FsRegEx<br />new : regexOptions:RegexOptions -&gt; FsRegEx<br />new : regularExpression:string -&gt; FsRegEx<br />new : regularExpression:string * regexOptions:RegexOptions -&gt; FsRegEx<br />new : regularExpression:string * regexOptions:RegexOptions * matchTimeout:System.TimeSpan -&gt; FsRegEx</div>
+<div class="tip" id="fs22">val add : value:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx</div>
+<div class="tip" id="fs23">val beginCaptureNamed : groupName:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx</div>
+<div class="tip" id="fs24">val any : value:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx</div>
+<div class="tip" id="fs25">val repeatPrevious : n:int -&gt; FsRegEx -&gt; FsRegEx</div>
+<div class="tip" id="fs26">val endCapture : fsRegEx:FsRegEx -&gt; FsRegEx</div>
+<div class="tip" id="fs27">val then&#39; : value:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx</div>
+<div class="tip" id="fs28">val capture : input:string -&gt; groupName:string -&gt; fsRegEx:FsRegEx -&gt; string</div>
+<div class="tip" id="fs29">val TestConnString : string</div>
+<div class="tip" id="fs30">val databaseFromRegex : connectionString:string -&gt; string</div>
+<div class="tip" id="fs31">val connectionString : string</div>
+<div class="tip" id="fs32">Multiple items<br />type Regex =<br />&#160;&#160;new : pattern:string -&gt; Regex + 2 overloads<br />&#160;&#160;member GetGroupNames : unit -&gt; string[]<br />&#160;&#160;member GetGroupNumbers : unit -&gt; int[]<br />&#160;&#160;member GroupNameFromNumber : i:int -&gt; string<br />&#160;&#160;member GroupNumberFromName : name:string -&gt; int<br />&#160;&#160;member IsMatch : input:string -&gt; bool + 1 overload<br />&#160;&#160;member Match : input:string -&gt; Match + 2 overloads<br />&#160;&#160;member MatchTimeout : TimeSpan<br />&#160;&#160;member Matches : input:string -&gt; MatchCollection + 1 overload<br />&#160;&#160;member Options : RegexOptions<br />&#160;&#160;...<br /><br />--------------------<br />Regex(pattern: string) : Regex<br />Regex(pattern: string, options: RegexOptions) : Regex<br />Regex(pattern: string, options: RegexOptions, matchTimeout: System.TimeSpan) : Regex</div>
+<div class="tip" id="fs33">Regex.Match(input: string, pattern: string) : Match<br />Regex.Match(input: string, pattern: string, options: RegexOptions) : Match<br />Regex.Match(input: string, pattern: string, options: RegexOptions, matchTimeout: System.TimeSpan) : Match</div>
+<div class="tip" id="fs34">val databaseFromFsRegEx : connectionString:string -&gt; string</div>
+<div class="tip" id="fs35">val databaseFromVerboseFsRegEx : connectionString:string -&gt; string</div>
+<div class="tip" id="fs36">val anyOf : value:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx</div>
 
         </div>
         <div class="span3">
