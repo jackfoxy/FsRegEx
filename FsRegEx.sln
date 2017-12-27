@@ -23,19 +23,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{BF60
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{83F16175-43B1-4C90-A1EE-8E351C33435D}"
 	ProjectSection(SolutionItems) = preProject
-		docsraw\tools\generate.fsx = docsraw\tools\generate.fsx
-		docsraw\tools\templates\template.cshtml = docsraw\tools\templates\template.cshtml
+		docsrc\tools\generate.fsx = docsrc\tools\generate.fsx
+		docsrc\tools\templates\template.cshtml = docsrc\tools\templates\template.cshtml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D5255-776D-4B61-85F9-73C37AA1FB9A}"
 	ProjectSection(SolutionItems) = preProject
-		docsraw\content\capture.fsx = docsraw\content\capture.fsx
-		docsraw\content\emailregex.fsx = docsraw\content\emailregex.fsx
-		docsraw\content\group.fsx = docsraw\content\group.fsx
-		docsraw\content\index.fsx = docsraw\content\index.fsx
-		docsraw\content\matching.fsx = docsraw\content\matching.fsx
-		docsraw\content\replacesplit.fsx = docsraw\content\replacesplit.fsx
-		docsraw\content\tutorial.fsx = docsraw\content\tutorial.fsx
+		docsrc\content\capture.fsx = docsrc\content\capture.fsx
+		docsrc\content\emailregex.fsx = docsrc\content\emailregex.fsx
+		docsrc\content\group.fsx = docsrc\content\group.fsx
+		docsrc\content\index.fsx = docsrc\content\index.fsx
+		docsrc\content\matching.fsx = docsrc\content\matching.fsx
+		docsrc\content\replacesplit.fsx = docsrc\content\replacesplit.fsx
+		docsrc\content\tutorial.fsx = docsrc\content\tutorial.fsx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ED8079DD-2B06-4030-9F0F-DC548F98E1C4}"

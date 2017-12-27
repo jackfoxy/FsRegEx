@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------
-// Builds the documentation from `.fsx` and `.md` files in the 'docsraw/content' directory
-// (the generated documentation is stored in the 'docsraw/output' directory)
+// Builds the documentation from `.fsx` and `.md` files in the 'docsrc/content' directory
+// (the generated documentation is stored in the 'docsrc/output' directory)
 // --------------------------------------------------------------------------------------
 let referenceBinaries = []
 // Web site location for the generated documentation
