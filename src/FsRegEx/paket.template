@@ -1,4 +1,5 @@
-type project
+type file
+id FsRegEx
 title
     FsRegEx
 owners
@@ -22,4 +23,5 @@ summary
 description
     FsRegEx provides composable F# functionality for all the capabilities of the .NET Regex class including supporting pipe forward |> composability.
 
-
+files
+	../../bin/FsRegEx ==> lib
