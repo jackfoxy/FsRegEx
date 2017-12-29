@@ -14,6 +14,8 @@ licenseUrl
     https://github.com/jackfoxy/FsRegEx/blob/master/LICENSE.txt
 requireLicenseAcceptance
     false
+language
+    F#
 copyright
     Copyright 2017
 tags
