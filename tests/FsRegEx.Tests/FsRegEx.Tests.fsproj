@@ -15,7 +15,6 @@
     <Compile Include="VerbalExpressions.fs" />
     <Compile Include="RunTests.fs" />
     <None Include="paket.references" />
-    <None Include="paket.template" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\FsRegEx\FsRegEx.fsproj"></ProjectReference>
