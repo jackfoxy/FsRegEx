@@ -1,7 +1,7 @@
 (*** hide ***)
 // This block of code is omitted in the generated HTML documentation. Use 
 // it to define helpers that you do not want to show in the documentation.
-#I "../../bin/FsRegEx"
+#I "../../bin/FsRegEx/net47"
 
 (**
 FsRegEx
@@ -56,8 +56,7 @@ let carRegExp = @"(\w+)\s+(car)"
 
 sprintf "%s %s %s" "One car" "red car" "blue car"
 |> matches carRegExp
-|> Array.map (fun m -> m.Value)
-|> Array.iter(fun x -> printfn "%s" x)
+|> Array.iter(fun m -> printfn "%s" m.Value)
 
 // One car
 // red car
@@ -123,7 +122,7 @@ let databaseFromFsRegEx connectionString =
 // true
 
 (**
-This example shows the more verbose and desctriptive Verbal Expressions:
+This example shows the more verbose and descriptive Verbal Expressions:
 *)
 
 let databaseFromVerboseFsRegEx connectionString =
