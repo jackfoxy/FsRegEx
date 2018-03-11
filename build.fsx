@@ -51,7 +51,7 @@ let solutionFile  = "FsRegEx.sln"
 let configuration = "Release"
 
 // Pattern specifying assemblies to be tested using Expecto
-let testAssemblies = "tests/**/bin" </> configuration </> "FsRegEx.Tests.exe"
+let testAssemblies = "tests/**/bin" </> configuration </> "net47" </> "FsRegEx.Tests.exe"
 
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
