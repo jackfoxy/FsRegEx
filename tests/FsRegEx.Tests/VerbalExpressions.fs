@@ -110,7 +110,7 @@ module VerbalExpressions =
                     |> capture "COD123END" groupName
                 Expect.isTrue (value = "123") "Expected True"
 
-            testCase "Group Names" <| fun () ->
+            testCase "Group Names2" <| fun () ->
                 let value = 
                     v
                     |> groupNames
