@@ -22,7 +22,6 @@ let info =
 
 #I "../../packages/FAKE/tools/"
 #r "FakeLib.dll"
-open Fake
 open Fake.Core
 open Fake.IO
 open Fake.IO.FileSystemOperators
@@ -68,9 +67,9 @@ let fsiEvaluator = lazy (Some (FsiEvaluator() :> IFsiEvaluator))
 
 // Copy static files and CSS + JS from F# Formatting
 let copyFiles () =
-  CopyRecursive files output true |> Trace.Log "Copying file: "
+  Shell.CopyRecursive files output true |> Trace.Log "Copying file: "
   Directory.ensure (output @@ "content")
-  CopyRecursive (formatting @@ "styles") (output @@ "content") true 
+  Shell.CopyRecursive (formatting @@ "styles") (output @@ "content") true 
     |> Trace.Log "Copying styles and scripts: "
 
 let binaries =
@@ -103,7 +102,7 @@ let libDirs =
 
 // Build API reference from XML comments
 let buildReference () =
-  CleanDir (output @@ "reference")
+  Shell.CleanDir (output @@ "reference")
   RazorMetadataFormat.Generate
     ( binaries, output @@ "reference", layoutRootsAll.["en"],
       parameters = ("root", root)::info,

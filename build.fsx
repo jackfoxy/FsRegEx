@@ -117,7 +117,7 @@ Fake.Core.Target.Create "CopyBinaries" (fun _ ->
     !! "src/**/*.??proj"
     -- "src/**/*.shproj"
     |>  Seq.map (fun f -> ((System.IO.Path.GetDirectoryName f) </> "bin" </> configuration, "bin" </> (System.IO.Path.GetFileNameWithoutExtension f)))
-    |>  Seq.iter (fun (fromDir, toDir) -> CopyDir toDir fromDir (fun _ -> true))
+    |>  Seq.iter (fun (fromDir, toDir) -> Shell.CopyDir toDir fromDir (fun _ -> true))
 )
 
 // --------------------------------------------------------------------------------------
@@ -228,11 +228,11 @@ let generateHelp fail =
 Fake.Core.Target.Create "GenerateHelp" (fun _ ->
     File.delete "docsrc/content/release-notes.md"
     Shell.CopyFile "docsrc/content/" "RELEASE_NOTES.md"
-    Rename "docsrc/content/release-notes.md" "docsrc/content/RELEASE_NOTES.md"
+    Shell.Rename "docsrc/content/release-notes.md" "docsrc/content/RELEASE_NOTES.md"
 
     File.delete "docsrc/content/license.md"
     Shell.CopyFile "docsrc/content/" "LICENSE.txt"
-    Rename "docsrc/content/license.md" "docsrc/content/LICENSE.txt"
+    Shell.Rename "docsrc/content/license.md" "docsrc/content/LICENSE.txt"
 
     generateHelp true
 )
@@ -240,11 +240,11 @@ Fake.Core.Target.Create "GenerateHelp" (fun _ ->
 Fake.Core.Target.Create "GenerateHelpDebug" (fun _ ->
     File.delete "docsrc/content/release-notes.md"
     Shell.CopyFile "docsrc/content/" "RELEASE_NOTES.md"
-    Rename "docsrc/content/release-notes.md" "docsrc/content/RELEASE_NOTES.md"
+    Shell.Rename "docsrc/content/release-notes.md" "docsrc/content/RELEASE_NOTES.md"
 
     File.delete "docsrc/content/license.md"
     Shell.CopyFile "docsrc/content/" "LICENSE.txt"
-    Rename "docsrc/content/license.md" "docsrc/content/LICENSE.txt"
+    Shell.Rename "docsrc/content/license.md" "docsrc/content/LICENSE.txt"
 
     generateHelp' true true
 )
@@ -298,7 +298,7 @@ Fake.Core.Target.Create "AddLangDocs" (fun _ ->
             failwithf "Documents for specified language '%s' have already been added." lang
 
         Directory.ensure langTemplateDir
-        Copy langTemplateDir [ templateDir </> templateFileName ]
+        Shell.Copy langTemplateDir [ templateDir </> templateFileName ]
 
         createIndexFsx lang)
 )
