@@ -3,7 +3,7 @@ source https://ci.appveyor.com/nuget/fsharp-formatting
 
 nuget FSharp.Core
 
-nuget FAKE 5.0.0-beta020
+nuget FAKE 5.0.0-beta025
 nuget FSharp.Formatting 3.0.0-beta08 beta
 
 github fsharp/FAKE modules/Octokit/Octokit.fsx

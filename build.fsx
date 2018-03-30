@@ -11,7 +11,8 @@ open Fake.DotNet
 open Fake.DotNet.AssemblyInfo
 open Fake.DotNet.AssemblyInfoFile
 open Fake.IO
-open Fake.ReleaseNotesHelper
+open Fake.IO.FileSystemOperators
+//open Fake.ReleaseNotesHelper
 open Fake.Tools
 open Fake.Testing.Expecto
 open System
@@ -69,7 +70,7 @@ let gitRaw = environVarOrDefault "gitRaw" "https://raw.githubusercontent.com/jac
 // --------------------------------------------------------------------------------------
 
 // Read additional information from the release notes document
-let release = LoadReleaseNotes "RELEASE_NOTES.md"
+let release = ReleaseNotes.load "RELEASE_NOTES.md"
 
 // Helper active pattern for project types
 let (|Fsproj|Csproj|Vbproj|Shproj|) (projFileName:string) =
@@ -81,7 +82,7 @@ let (|Fsproj|Csproj|Vbproj|Shproj|) (projFileName:string) =
     | _                           -> failwith (sprintf "Project file %s not supported. Unknown project type." projFileName)
 
 // Generate assembly info files with the right version & up-to-date information
-Target.Create "AssemblyInfo" (fun _ ->
+Fake.Core.Target.Create "AssemblyInfo" (fun _ ->
     let getAssemblyInfoAttributes projectName =
         [ Title (projectName)
           Product project
@@ -112,7 +113,7 @@ Target.Create "AssemblyInfo" (fun _ ->
 // Copies binaries from default VS location to expected bin folder
 // But keeps a subdirectory structure for each project in the
 // src folder to support multiple project outputs
-Target.Create "CopyBinaries" (fun _ ->
+Fake.Core.Target.Create "CopyBinaries" (fun _ ->
     !! "src/**/*.??proj"
     -- "src/**/*.shproj"
     |>  Seq.map (fun f -> ((System.IO.Path.GetDirectoryName f) </> "bin" </> configuration, "bin" </> (System.IO.Path.GetFileNameWithoutExtension f)))
@@ -129,7 +130,7 @@ let vsProjProps =
     [ ("Configuration", configuration); ("Platform", "Any CPU") ]
 #endif
 
-Target.Create "Clean" (fun _ ->
+Fake.Core.Target.Create "Clean" (fun _ ->
     !! solutionFile |> MSBuildReleaseExt "" vsProjProps "Clean" |> ignore
     CleanDirs ["bin"; "temp"; "docs"]
 )
@@ -137,7 +138,7 @@ Target.Create "Clean" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Build library & test project
 
-Target.Create "Build" (fun _ ->
+Fake.Core.Target.Create "Build" (fun _ ->
     DotNetCli.Restore id
     
     !! solutionFile
@@ -148,7 +149,7 @@ Target.Create "Build" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Run the unit tests using test runner
 
-Target.Create "RunTests" (fun _ ->
+Fake.Core.Target.Create "RunTests" (fun _ ->
     !! testAssemblies
     |> Expecto id
 )
@@ -156,7 +157,7 @@ Target.Create "RunTests" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Build a NuGet package
 
-Target.Create "NuGet" (fun _ ->
+Fake.Core.Target.Create "NuGet" (fun _ ->
     Paket.Pack(fun p ->
         { p with
             OutputPath = "bin"
@@ -164,7 +165,7 @@ Target.Create "NuGet" (fun _ ->
             ReleaseNotes = String.toLines release.Notes})
 )
 
-Target.Create "PublishNuget" (fun _ ->
+Fake.Core.Target.Create "PublishNuget" (fun _ ->
     Paket.Push(fun p ->
         { p with
             WorkingDir = "bin" })
@@ -206,7 +207,7 @@ let buildDocumentationTarget fsiargs target =
         failwith "generating reference documentation failed"
     ()
 
-Target.Create "GenerateReferenceDocs" (fun _ ->
+Fake.Core.Target.Create "GenerateReferenceDocs" (fun _ ->
     buildDocumentationTarget "-d:RELEASE -d:REFERENCE" "Default"
 )
 
@@ -224,7 +225,7 @@ let generateHelp' fail debug =
 let generateHelp fail =
     generateHelp' fail false
 
-Target.Create "GenerateHelp" (fun _ ->
+Fake.Core.Target.Create "GenerateHelp" (fun _ ->
     File.delete "docsrc/content/release-notes.md"
     Shell.CopyFile "docsrc/content/" "RELEASE_NOTES.md"
     Rename "docsrc/content/release-notes.md" "docsrc/content/RELEASE_NOTES.md"
@@ -236,7 +237,7 @@ Target.Create "GenerateHelp" (fun _ ->
     generateHelp true
 )
 
-Target.Create "GenerateHelpDebug" (fun _ ->
+Fake.Core.Target.Create "GenerateHelpDebug" (fun _ ->
     File.delete "docsrc/content/release-notes.md"
     Shell.CopyFile "docsrc/content/" "RELEASE_NOTES.md"
     Rename "docsrc/content/release-notes.md" "docsrc/content/RELEASE_NOTES.md"
@@ -248,7 +249,7 @@ Target.Create "GenerateHelpDebug" (fun _ ->
     generateHelp' true true
 )
 
-Target.Create "KeepRunning" (fun _ ->
+Fake.Core.Target.Create "KeepRunning" (fun _ ->
     use watcher = !! "docsrc/content/**/*.*" |> WatchChanges (fun changes ->
          generateHelp' true true
     )
@@ -260,7 +261,7 @@ Target.Create "KeepRunning" (fun _ ->
     watcher.Dispose()
 )
 
-Target.Create "GenerateDocs" Target.DoNothing
+Fake.Core.Target.Create "GenerateDocs" Fake.Core.Target.DoNothing
 
 let createIndexFsx lang =
     let content = """(*** hide ***)
@@ -278,7 +279,7 @@ F# Project Scaffold ({0})
     Directory.ensure targetDir
     System.IO.File.WriteAllText(targetFile, System.String.Format(content, lang))
 
-Target.Create "AddLangDocs" (fun _ ->
+Fake.Core.Target.Create "AddLangDocs" (fun _ ->
     let args = System.Environment.GetCommandLineArgs()
     if args.Length < 4 then
         failwith "Language not specified."
@@ -308,7 +309,7 @@ Target.Create "AddLangDocs" (fun _ ->
 #load "paket-files/fsharp/FAKE/modules/Octokit/Octokit.fsx"
 open Octokit
 
-Target.Create "Release" (fun _ ->
+Fake.Core.Target.Create "Release" (fun _ ->
     let user =
         match getBuildParam "github-user" with
         | s when not (String.IsNullOrWhiteSpace s) -> s
@@ -338,12 +339,12 @@ Target.Create "Release" (fun _ ->
     |> Async.RunSynchronously
 )
 
-Target.Create "BuildPackage" Target.DoNothing
+Fake.Core.Target.Create "BuildPackage" Fake.Core.Target.DoNothing
 
 // --------------------------------------------------------------------------------------
 // Run all targets by default. Invoke 'build <Target>' to override
 
-Target.Create "All" Target.DoNothing
+Fake.Core.Target.Create "All" Fake.Core.Target.DoNothing
 
 "AssemblyInfo"
   ==> "Build"
@@ -369,4 +370,4 @@ Target.Create "All" Target.DoNothing
   ==> "PublishNuget"
   ==> "Release"
 
-Target.RunOrDefault "All"
+Fake.Core.Target.RunOrDefault "All"
