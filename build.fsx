@@ -63,7 +63,7 @@ let gitHome = sprintf "%s/%s" "https://github.com" gitOwner
 let gitName = "FsRegEx"
 
 // The url for the raw files hosted
-let gitRaw = environVarOrDefault "gitRaw" "https://raw.githubusercontent.com/jackfoxy"
+let gitRaw = Environment.environVarOrDefault "gitRaw" "https://raw.githubusercontent.com/jackfoxy"
 
 // --------------------------------------------------------------------------------------
 // END TODO: The rest of the file includes standard build steps

@@ -25,6 +25,7 @@ let info =
 open Fake
 open Fake.Core
 open Fake.IO
+open Fake.IO.FileSystemOperators
 
 #load "../../packages/FSharp.Formatting/FSharp.Formatting.fsx"
 
