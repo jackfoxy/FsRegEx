@@ -5,7 +5,7 @@
 #r @"packages/FAKE/tools/FakeLib.dll"
 open Fake
 open Fake.Core
-//open Fake.Core.Globbing.Operators
+//open Fake.IO.Globbing.Operators
 open Fake.Core.TargetOperators
 open Fake.DotNet
 open Fake.DotNet.AssemblyInfo
@@ -131,7 +131,7 @@ let vsProjProps =
 #endif
 
 Fake.Core.Target.Create "Clean" (fun _ ->
-    !! solutionFile |> MSBuildReleaseExt "" vsProjProps "Clean" |> ignore
+    !! solutionFile |> Fake.DotNet.MsBuild.RunReleaseExt "" vsProjProps "Clean" |> ignore
     CleanDirs ["bin"; "temp"; "docs"]
 )
 
@@ -142,7 +142,7 @@ Fake.Core.Target.Create "Build" (fun _ ->
     DotNetCli.Restore id
     
     !! solutionFile
-    |> MSBuildReleaseExt "" vsProjProps "Rebuild"
+    |> Fake.DotNet.MsBuild.RunReleaseExt "" vsProjProps "Rebuild"
     |> ignore
 )
 
@@ -175,7 +175,6 @@ Fake.Core.Target.Create "PublishNuget" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Generate the documentation
 
-
 let fakePath = "packages" </> "FAKE" </> "tools" </> "FAKE.exe"
 let fakeStartInfo script workingDirectory args fsiargs environmentVars =
     (fun (info: System.Diagnostics.ProcessStartInfo) ->
@@ -186,13 +185,14 @@ let fakeStartInfo script workingDirectory args fsiargs environmentVars =
             info.EnvironmentVariables.[k] <- v
         for (k, v) in environmentVars do
             setVar k v
-        setVar "MSBuild" msBuildExe
+        setVar "MSBuild" Fake.DotNet.MsBuild.msBuildExe
         setVar "GIT" Git.CommandHelper.gitPath
         setVar "FSI" fsiPath)
 
 /// Run the given buildscript with FAKE.exe
 let executeFAKEWithOutput workingDirectory script fsiargs envArgs =
-    let exitCode =
+    let exitCode = 
+        //Fake.Core.Process.ExecWithLambdas
         ExecProcessWithLambdas
             (fakeStartInfo script workingDirectory "" fsiargs envArgs)
             TimeSpan.MaxValue false ignore ignore
