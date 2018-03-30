@@ -200,7 +200,7 @@ let executeFAKEWithOutput workingDirectory script fsiargs envArgs =
 
 // Documentation
 let buildDocumentationTarget fsiargs target =
-    trace (sprintf "Building documentation (%s), this could take some time, please wait..." target)
+    Trace.trace (sprintf "Building documentation (%s), this could take some time, please wait..." target)
     let exit = executeFAKEWithOutput "docsrc/tools" "generate.fsx" fsiargs ["target", target]
     if exit <> 0 then
         failwith "generating reference documentation failed"
@@ -216,33 +216,33 @@ let generateHelp' fail debug =
         else "--define:RELEASE --define:HELP"
     try
         buildDocumentationTarget args "Default"
-        traceImportant "Help generated"
+        Trace.traceImportant "Help generated"
     with
     | e when not fail ->
-        traceImportant "generating help documentation failed"
+        Trace.traceImportant "generating help documentation failed"
 
 let generateHelp fail =
     generateHelp' fail false
 
 Target.Create "GenerateHelp" (fun _ ->
-    DeleteFile "docsrc/content/release-notes.md"
-    CopyFile "docsrc/content/" "RELEASE_NOTES.md"
+    File.delete "docsrc/content/release-notes.md"
+    Shell.CopyFile "docsrc/content/" "RELEASE_NOTES.md"
     Rename "docsrc/content/release-notes.md" "docsrc/content/RELEASE_NOTES.md"
 
-    DeleteFile "docsrc/content/license.md"
-    CopyFile "docsrc/content/" "LICENSE.txt"
+    File.delete "docsrc/content/license.md"
+    Shell.CopyFile "docsrc/content/" "LICENSE.txt"
     Rename "docsrc/content/license.md" "docsrc/content/LICENSE.txt"
 
     generateHelp true
 )
 
 Target.Create "GenerateHelpDebug" (fun _ ->
-    DeleteFile "docsrc/content/release-notes.md"
-    CopyFile "docsrc/content/" "RELEASE_NOTES.md"
+    File.delete "docsrc/content/release-notes.md"
+    Shell.CopyFile "docsrc/content/" "RELEASE_NOTES.md"
     Rename "docsrc/content/release-notes.md" "docsrc/content/RELEASE_NOTES.md"
 
-    DeleteFile "docsrc/content/license.md"
-    CopyFile "docsrc/content/" "LICENSE.txt"
+    File.delete "docsrc/content/license.md"
+    Shell.CopyFile "docsrc/content/" "LICENSE.txt"
     Rename "docsrc/content/license.md" "docsrc/content/LICENSE.txt"
 
     generateHelp' true true
@@ -253,7 +253,7 @@ Target.Create "KeepRunning" (fun _ ->
          generateHelp' true true
     )
 
-    traceImportant "Waiting for help edits. Press any key to stop."
+    Trace.traceImportant "Waiting for help edits. Press any key to stop."
 
     System.Console.ReadKey() |> ignore
 
