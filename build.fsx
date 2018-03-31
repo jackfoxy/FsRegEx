@@ -5,6 +5,7 @@
 #r @"packages/FAKE/tools/FakeLib.dll"
 open Fake
 open Fake.Core
+open Fake.Core.Environment
 //open Fake.IO.Globbing.Operators
 open Fake.Core.TargetOperators
 open Fake.DotNet
@@ -13,7 +14,7 @@ open Fake.DotNet.AssemblyInfoFile
 open Fake.IO
 open Fake.IO.FileSystemOperators
 //open Fake.ReleaseNotesHelper
-open Fake.Tools
+open Fake.Tools.Git
 open Fake.Testing.Expecto
 open System
 
@@ -132,7 +133,7 @@ let vsProjProps =
 
 Fake.Core.Target.Create "Clean" (fun _ ->
     !! solutionFile |> Fake.DotNet.MsBuild.RunReleaseExt "" vsProjProps "Clean" |> ignore
-    CleanDirs ["bin"; "temp"; "docs"]
+    Shell.CleanDirs ["bin"; "temp"; "docs"]
 )
 
 // --------------------------------------------------------------------------------------
@@ -186,14 +187,20 @@ let fakeStartInfo script workingDirectory args fsiargs environmentVars =
         for (k, v) in environmentVars do
             setVar k v
         setVar "MSBuild" Fake.DotNet.MsBuild.msBuildExe
-        setVar "GIT" Git.CommandHelper.gitPath
+        setVar "GIT" CommandHelper.gitPath
         setVar "FSI" fsiPath)
 
 /// Run the given buildscript with FAKE.exe
 let executeFAKEWithOutput workingDirectory script fsiargs envArgs =
     let exitCode = 
+        // this throws: Cannot start process because a file name has not been provided.
         //Fake.Core.Process.ExecWithLambdas
+        //(Diagnotics.ProcessStartInfo -> Diagnotics.ProcessStartInfo) -> TimeSpan -> bool -> (string -> unit) -> (string -> unit)  -> int
+        //    (fun p -> 
+        //        (fakeStartInfo script workingDirectory "" fsiargs envArgs) |> ignore
+        //        p)
         ExecProcessWithLambdas
+        //(Diagnotics.ProcessStartInfo -> unit) -> TimeSpan -> bool -> (string -> unit) -> (string -> unit)  -> int
             (fakeStartInfo script workingDirectory "" fsiargs envArgs)
             TimeSpan.MaxValue false ignore ignore
     System.Threading.Thread.Sleep 1000
@@ -311,25 +318,25 @@ open Octokit
 
 Fake.Core.Target.Create "Release" (fun _ ->
     let user =
-        match getBuildParam "github-user" with
+        match environVarOrDefault "github-user" String.Empty with
         | s when not (String.IsNullOrWhiteSpace s) -> s
         | _ -> getUserInput "Username: "
     let pw =
-        match getBuildParam "github-pw" with
+        match environVarOrDefault "github-pw" String.Empty with
         | s when not (String.IsNullOrWhiteSpace s) -> s
         | _ -> getUserPassword "Password: "
     let remote =
-        Git.CommandHelper.getGitResult "" "remote -v"
+        CommandHelper.getGitResult "" "remote -v"
         |> Seq.filter (fun (s: string) -> s.EndsWith("(push)"))
         |> Seq.tryFind (fun (s: string) -> s.Contains(gitOwner + "/" + gitName))
         |> function None -> gitHome + "/" + gitName | Some (s: string) -> s.Split().[0]
 
-    Git.Staging.StageAll ""
-    Git.Commit.Commit "" (sprintf "Bump version to %s" release.NugetVersion)
-    Git.Branches.pushBranch "" remote (Git.Information.getBranchName "")
+    Staging.StageAll ""
+    Commit.Commit "" (sprintf "Bump version to %s" release.NugetVersion)
+    Branches.pushBranch "" remote (Information.getBranchName "")
 
-    Git.Branches.tag "" release.NugetVersion
-    Git.Branches.pushTag "" remote release.NugetVersion
+    Branches.tag "" release.NugetVersion
+    Branches.pushTag "" remote release.NugetVersion
 
     // release on github
     createClient user pw
