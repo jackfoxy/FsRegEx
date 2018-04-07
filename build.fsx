@@ -140,7 +140,7 @@ Fake.Core.Target.Create "Clean" (fun _ ->
 // Build library & test project
 
 Fake.Core.Target.Create "Build" (fun _ ->
-    DotNetCli.Restore id
+    DotNet.Restore id |> ignore
     
     !! solutionFile
     |> Fake.DotNet.MsBuild.RunReleaseExt "" vsProjProps "Rebuild"
