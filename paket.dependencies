@@ -3,12 +3,12 @@ source https://ci.appveyor.com/nuget/fsharp-formatting
 
 nuget FSharp.Core
 
-nuget FAKE 5.0.0-beta025
-nuget Fake.Core 5.0.0-beta025
-nuget Fake.IO.FileSystem 5.0.0-beta025
-nuget Fake.DotNet.Cli 5.0.0-beta025
-nuget Fake.Tools.Git 5.0.0-beta025
-nuget Fake.Core.Environment 5.0.0-beta025
+nuget FAKE 5.0.0-beta027
+nuget Fake.Core 5.0.0-beta027
+nuget Fake.IO.FileSystem 5.0.0-beta027
+nuget Fake.DotNet.Cli 5.0.0-beta027
+nuget Fake.Tools.Git 5.0.0-beta027
+nuget Fake.Core.Environment 5.0.0-beta027
 
 nuget FSharp.Formatting 3.0.0-beta09 beta
 
