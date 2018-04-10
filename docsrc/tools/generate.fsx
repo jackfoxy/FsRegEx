@@ -67,10 +67,10 @@ let fsiEvaluator = lazy (Some (FsiEvaluator() :> IFsiEvaluator))
 
 // Copy static files and CSS + JS from F# Formatting
 let copyFiles () =
-  Shell.CopyRecursive files output true |> Trace.Log "Copying file: "
+  Shell.CopyRecursive files output true |> Trace.logItems "Copying file: "
   Directory.ensure (output @@ "content")
   Shell.CopyRecursive (formatting @@ "styles") (output @@ "content") true 
-    |> Trace.Log "Copying styles and scripts: "
+    |> Trace.logItems "Copying styles and scripts: "
 
 let binaries =
     let manuallyAdded = 
