@@ -138,7 +138,7 @@ Target.create "Clean" (fun _ ->
 
 Target.create "Build" (fun _ ->
     //Fake.DotNetCli.Restore id
-    //DotNet.exec id "restore" System.String.Empty |> ignore
+    DotNet.exec id "restore" System.String.Empty |> ignore
 
     Trace.log <| sprintf "source dir is %s" __SOURCE_DIRECTORY__
     
