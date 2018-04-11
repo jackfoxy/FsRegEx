@@ -3,7 +3,7 @@
 // --------------------------------------------------------------------------------------
 
 #r @"packages/FAKE.Core/tools/FakeLib.dll" //
-#r @"packages/Fake.IO.FileSystem/lib/net46/Fake.IO.FileSystem.dll"
+//#r @"packages/Fake.IO.FileSystem/lib/net46/Fake.IO.FileSystem.dll"
 
 open Fake.Core
 open Fake.Core.TargetOperators
@@ -174,18 +174,16 @@ Target.create "PublishNuget" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Generate the documentation
 
-let fakePath = "packages" </> "FAKE" </> "tools" </> "FAKE.exe"
+let fakePath = "packages" </> "FAKE.Core" </> "tools" </> "FAKE.exe"
 let fakeStartInfo script workingDirectory args fsiargs environmentVars =
-    (fun (info: System.Diagnostics.ProcessStartInfo) ->
-        info.FileName <- Path.GetFullPath fakePath
-        info.Arguments <- sprintf "%s --fsiargs -d:FAKE %s \"%s\"" args fsiargs script
-        info.WorkingDirectory <- workingDirectory
-        let setVar k v =
-            info.EnvironmentVariables.[k] <- v
-        for (k, v) in environmentVars do
-            setVar k v
-        setVar "MSBuild" MSBuild.msBuildExe
-        setVar "GIT" CommandHelper.gitPath)
+    (fun (info: ProcStartInfo) ->
+        { info with 
+            FileName = Path.GetFullPath fakePath
+            Arguments = sprintf "%s --fsiargs -d:FAKE %s \"%s\"" args fsiargs script
+            WorkingDirectory = workingDirectory }
+        |> Process.withFramework        
+        |> Process.setEnvironmentVariable "MSBuild" MSBuild.msBuildExe
+        |> Process.setEnvironmentVariable "GIT" CommandHelper.gitPath)
         //setVar "FSI" Fake.FSIHelper.fsiPath)
 
 /// Run the given buildscript with FAKE.exe
@@ -194,9 +192,7 @@ let executeFAKEWithOutput workingDirectory script fsiargs envArgs =
         // this throws: Cannot start process because a file name has not been provided.
         Process.execRaw
         //(Diagnotics.ProcessStartInfo -> Diagnotics.ProcessStartInfo) -> TimeSpan -> bool -> (string -> unit) -> (string -> unit)  -> int
-            (fun p -> 
-                (fakeStartInfo script workingDirectory "" fsiargs envArgs p.AsStartInfo)
-                p)
+            (fakeStartInfo script workingDirectory "" fsiargs envArgs)
 
         //Fake.ProcessHelper.ExecProcessWithLambdas
         ////(Diagnotics.ProcessStartInfo -> unit) -> TimeSpan -> bool -> (string -> unit) -> (string -> unit)  -> int
@@ -258,8 +254,8 @@ Target.create "GenerateHelpDebug" (fun _ ->
 Target.create "KeepRunning" (fun _ ->
     use watcher = 
         
-        !! "docsrc/content/**/*.*" 
-        |> ChangeWatcher.run (fun changes ->
+        Fake.FileSystem.(!!) "docsrc/content/**/*.*" 
+        |> Fake.ChangeWatcher.WatchChanges (fun changes ->
          generateHelp' true true
     )
 
