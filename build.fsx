@@ -2,8 +2,7 @@
 // FAKE build script
 // --------------------------------------------------------------------------------------
 
-#r @"packages/FAKE.Core/tools/FakeLib.dll" //
-//#r @"packages/Fake.IO.FileSystem/lib/net46/Fake.IO.FileSystem.dll"
+#r @"packages/FAKE.Core/tools/FakeLib.dll" 
 
 open Fake.Core
 open Fake.Core.TargetOperators
@@ -137,8 +136,7 @@ Target.create "Clean" (fun _ ->
 // Build library & test project
 
 Target.create "Build" (fun _ ->
-    //Fake.DotNetCli.Restore id
-    DotNet.exec id "restore" System.String.Empty |> ignore
+    //DotNet.exec id "restore" System.String.Empty |> ignore
 
     Trace.log <| sprintf "source dir is %s" __SOURCE_DIRECTORY__
     
@@ -184,19 +182,12 @@ let fakeStartInfo script workingDirectory args fsiargs environmentVars =
         |> Process.withFramework        
         |> Process.setEnvironmentVariable "MSBuild" MSBuild.msBuildExe
         |> Process.setEnvironmentVariable "GIT" CommandHelper.gitPath)
-        //setVar "FSI" Fake.FSIHelper.fsiPath)
 
 /// Run the given buildscript with FAKE.exe
 let executeFAKEWithOutput workingDirectory script fsiargs envArgs =
     let exitCode = 
-        // this throws: Cannot start process because a file name has not been provided.
         Process.execRaw
-        //(Diagnotics.ProcessStartInfo -> Diagnotics.ProcessStartInfo) -> TimeSpan -> bool -> (string -> unit) -> (string -> unit)  -> int
             (fakeStartInfo script workingDirectory "" fsiargs envArgs)
-
-        //Fake.ProcessHelper.ExecProcessWithLambdas
-        ////(Diagnotics.ProcessStartInfo -> unit) -> TimeSpan -> bool -> (string -> unit) -> (string -> unit)  -> int
-        //    (fakeStartInfo script workingDirectory "" fsiargs envArgs)
             TimeSpan.MaxValue false ignore ignore
     System.Threading.Thread.Sleep 1000
     exitCode
@@ -250,7 +241,7 @@ Target.create "GenerateHelpDebug" (fun _ ->
 
     generateHelp' true true
 )
-//open Fake
+
 Target.create "KeepRunning" (fun _ ->
     use watcher = 
         
