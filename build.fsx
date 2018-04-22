@@ -1,8 +1,27 @@
 // --------------------------------------------------------------------------------------
 // FAKE build script
 // --------------------------------------------------------------------------------------
+//source https://api.nuget.org/v3/index.json
+#r "paket:
+nuget Fake.Core.Target prerelease 
+nuget Fake.IO.FileSystem prerelease
+nuget Fake.DotNet.Cli prerelease
+nuget Fake.Tools.Git prerelease 
+nuget Fake.DotNet.MSBuild prerelease
+nuget Fake.Core.ReleaseNotes 
+nuget Fake.DotNet.AssemblyInfoFile prerelease 
+nuget Fake.DotNet.Paket prerelease 
+nuget Fake.DotNet.Testing.Expecto 
+nuget FSharp.Formatting prerelease 
+nuget Fake.DotNet.FSFormatting prerelease //"
 
-#r @"packages/FAKE.Core/tools/FakeLib.dll" 
+#load "./.fake/build.fsx/intellisense.fsx"
+//#load "./docsrc/tools/generate.fsx"
+
+#if !FAKE
+let execContext = Fake.Core.Context.FakeExecutionContext.Create false "build.fsx" []
+Fake.Core.Context.setExecutionContext (Fake.Core.Context.RuntimeContext.Fake execContext)
+#endif
 
 open Fake.Core
 open Fake.Core.TargetOperators
@@ -11,7 +30,7 @@ open Fake.IO
 open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
 open Fake.Tools.Git
-open Fake.Testing.Expecto
+open Fake.DotNet.Testing
 open System
 open System.IO
 
@@ -149,7 +168,7 @@ Target.create "Build" (fun _ ->
 
 Target.create "RunTests" (fun _ ->
     !! testAssemblies
-    |> Expecto id
+    |> Expecto.run id
 )
 
 // --------------------------------------------------------------------------------------
@@ -186,9 +205,9 @@ let fakeStartInfo script workingDirectory args fsiargs environmentVars =
 /// Run the given buildscript with FAKE.exe
 let executeFAKEWithOutput workingDirectory script fsiargs envArgs =
     let exitCode = 
-        Process.execRaw
+        Process.execSimple
             (fakeStartInfo script workingDirectory "" fsiargs envArgs)
-            TimeSpan.MaxValue false ignore ignore
+            TimeSpan.MaxValue
     System.Threading.Thread.Sleep 1000
     exitCode
 
@@ -204,7 +223,7 @@ Target.create "GenerateReferenceDocs" (fun _ ->
     buildDocumentationTarget "-d:RELEASE -d:REFERENCE" "Default"
 )
 
-let generateHelp' fail debug =
+let generateHelp fail debug =
     let args =
         if debug then "--define:HELP"
         else "--define:RELEASE --define:HELP"
@@ -212,12 +231,12 @@ let generateHelp' fail debug =
         buildDocumentationTarget args "Default"
         Trace.traceImportant "Help generated"
     with
-    | e when not fail ->
+    | e when fail ->
         Trace.traceImportant "generating help documentation failed"
-
-let generateHelp fail =
-    generateHelp' fail false
-
+        Trace.traceException e
+    | _ ->
+        Trace.traceImportant "generating help documentation failed"
+        
 Target.create "GenerateHelp" (fun _ ->
     File.delete "docsrc/content/release-notes.md"
     Shell.CopyFile "docsrc/content/" "RELEASE_NOTES.md"
@@ -227,7 +246,7 @@ Target.create "GenerateHelp" (fun _ ->
     Shell.CopyFile "docsrc/content/" "LICENSE.txt"
     Shell.Rename "docsrc/content/license.md" "docsrc/content/LICENSE.txt"
 
-    generateHelp true
+    generateHelp true false
 )
 
 Target.create "GenerateHelpDebug" (fun _ ->
@@ -239,25 +258,26 @@ Target.create "GenerateHelpDebug" (fun _ ->
     Shell.CopyFile "docsrc/content/" "LICENSE.txt"
     Shell.Rename "docsrc/content/license.md" "docsrc/content/LICENSE.txt"
 
-    generateHelp' true true
+    generateHelp true true
 )
 
 Target.create "KeepRunning" (fun _ ->
-    use watcher = 
+    //use watcher = 
         
-        Fake.FileSystem.(!!) "docsrc/content/**/*.*" 
-        |> Fake.ChangeWatcher.WatchChanges (fun changes ->
-         generateHelp' true true
-    )
+    //    Fake.FileSystem.(!!) "docsrc/content/**/*.*" 
+    //    |> Fake.ChangeWatcher.WatchChanges (fun changes ->
+    //     generateHelp' true true
+    //)
 
-    Trace.traceImportant "Waiting for help edits. Press any key to stop."
+    //Trace.traceImportant "Waiting for help edits. Press any key to stop."
 
-    System.Console.ReadKey() |> ignore
+    //System.Console.ReadKey() |> ignore
 
-    watcher.Dispose()
+    //watcher.Dispose()
+    ()
 )
 
-Target.create "GenerateDocs" Target.DoNothing
+//Target.create "GenerateDocs" Target.DoNothing
 
 let createIndexFsx lang =
     let content = """(*** hide ***)
@@ -302,9 +322,9 @@ Target.create "AddLangDocs" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Release Scripts
 
-#load "paket-files/fsharp/FAKE/modules/Octokit/Octokit.fsx"
+//#load "paket-files/fsharp/FAKE/modules/Octokit/Octokit.fsx"
 
-open Octokit
+//open Octokit
 
 //Target.create "Release" (fun _ ->
 //    let user =
@@ -349,14 +369,14 @@ Target.create "All" Target.DoNothing
   ==> "CopyBinaries"
   ==> "RunTests"
   ==> "GenerateReferenceDocs"
-  ==> "GenerateDocs"
+ // ==> "GenerateDocs"
   ==> "NuGet"
   ==> "BuildPackage"
   ==> "All"
 
 "GenerateHelp"
   ==> "GenerateReferenceDocs"
-  ==> "GenerateDocs"
+ // ==> "GenerateDocs"
 
 "GenerateHelpDebug"
   ==> "KeepRunning"
