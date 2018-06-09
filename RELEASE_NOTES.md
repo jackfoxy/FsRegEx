@@ -1,4 +1,4 @@
-#### 0.7.2 - December 29, 2017
+#### 0.7.2 - June 9, 2018
 * multi-target net45, netstandard2.0
 * support SourceLink
 * FSharp.Core 4.5
