@@ -1,38 +1,23 @@
 // --------------------------------------------------------------------------------------
 // FAKE build script
 // --------------------------------------------------------------------------------------
-//source https://api.nuget.org/v3/index.json
-#r "paket:
-nuget Fake.Core.Target prerelease 
-nuget Fake.IO.FileSystem prerelease
-nuget Fake.DotNet.Cli prerelease
-nuget Fake.Tools.Git prerelease 
-nuget Fake.DotNet.MSBuild prerelease
-nuget Fake.Core.ReleaseNotes 
-nuget Fake.DotNet.AssemblyInfoFile prerelease 
-nuget Fake.DotNet.Paket prerelease 
-nuget Fake.DotNet.Testing.Expecto 
-nuget FSharp.Formatting prerelease 
-nuget Fake.DotNet.FSFormatting prerelease //"
+
+#r "paket: groupref FakeBuild //"
 
 #load "./.fake/build.fsx/intellisense.fsx"
 //#load "./docsrc/tools/generate.fsx"
 
-#if !FAKE
-let execContext = Fake.Core.Context.FakeExecutionContext.Create false "build.fsx" []
-Fake.Core.Context.setExecutionContext (Fake.Core.Context.RuntimeContext.Fake execContext)
-#endif
 
+
+open System.IO
 open Fake.Core
 open Fake.Core.TargetOperators
 open Fake.DotNet
 open Fake.IO
 open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
-open Fake.Tools.Git
 open Fake.DotNet.Testing
-open System
-open System.IO
+
 
 // --------------------------------------------------------------------------------------
 // START TODO: Provide project-specific details below
@@ -118,7 +103,7 @@ Target.create "AssemblyInfo" (fun _ ->
 
     !! "src/**/*.??proj"
     |> Seq.map getProjectDetails
-    |> Seq.iter (fun (projFileName, projectName, folderName, attributes) ->
+    |> Seq.iter (fun (projFileName, _, folderName, attributes) ->
         match projFileName with
         | Fsproj -> AssemblyInfoFile.createFSharp (folderName </> "AssemblyInfo.fs") attributes
         | Csproj -> AssemblyInfoFile.createCSharp ((folderName </> "Properties") </> "AssemblyInfo.cs") attributes
@@ -134,33 +119,26 @@ Target.create "CopyBinaries" (fun _ ->
     !! "src/**/*.??proj"
     -- "src/**/*.shproj"
     |>  Seq.map (fun f -> ((Path.getDirectory f) </> "bin" </> configuration, "bin" </> (Path.GetFileNameWithoutExtension f)))
-    |>  Seq.iter (fun (fromDir, toDir) -> Shell.CopyDir toDir fromDir (fun _ -> true))
+    |>  Seq.iter (fun (fromDir, toDir) -> Shell.copyDir toDir fromDir (fun _ -> true))
 )
 
 // --------------------------------------------------------------------------------------
 // Clean build results
 
-let vsProjProps = 
-#if MONO
-    [ ("DefineConstants","MONO"); ("Configuration", configuration) ]
-#else
-    [ ("Configuration", configuration); ("Platform", "Any CPU") ]
-#endif
+let buildConfiguration = DotNet.Custom <| Environment.environVarOrDefault "configuration" configuration
 
 Target.create "Clean" (fun _ ->
-    Shell.CleanDirs ["bin"; "temp"; "docs"]
+    Shell.cleanDirs ["bin"; "temp"; "docs"]
 )
 
 // --------------------------------------------------------------------------------------
 // Build library & test project
 
 Target.create "Build" (fun _ ->
-    //DotNet.exec id "restore" System.String.Empty |> ignore
-
-    Trace.log <| sprintf "source dir is %s" __SOURCE_DIRECTORY__
-    
-    MSBuild.runWithDefaults "Build" [solutionFile]
-    |> Trace.logItems "AppBuild-Output: "
+    solutionFile 
+    |> DotNet.build (fun p -> 
+        { p with
+            Configuration = buildConfiguration })
 )
 
 // --------------------------------------------------------------------------------------
@@ -191,133 +169,178 @@ Target.create "PublishNuget" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Generate the documentation
 
-let fakePath = "packages" </> "FAKE.Core" </> "tools" </> "FAKE.exe"
-let fakeStartInfo script workingDirectory args fsiargs environmentVars =
-    (fun (info: ProcStartInfo) ->
-        { info with 
-            FileName = Path.GetFullPath fakePath
-            Arguments = sprintf "%s --fsiargs -d:FAKE %s \"%s\"" args fsiargs script
-            WorkingDirectory = workingDirectory }
-        |> Process.withFramework        
-        |> Process.setEnvironmentVariable "MSBuild" MSBuild.msBuildExe
-        |> Process.setEnvironmentVariable "GIT" CommandHelper.gitPath)
+//let fakePath = "packages" </> "FAKE.Core" </> "tools" </> "FAKE.exe"
+//let fakeStartInfo script workingDirectory args fsiargs environmentVars =
+//    (fun (info: ProcStartInfo) ->
+//        { info with 
+//            FileName = Path.GetFullPath fakePath
+//            Arguments = sprintf "%s --fsiargs -d:FAKE %s \"%s\"" args fsiargs script
+//            WorkingDirectory = workingDirectory }
+//        |> Process.withFramework        
+//        |> Process.setEnvironmentVariable "MSBuild" MSBuild.msBuildExe
+//        |> Process.setEnvironmentVariable "GIT" CommandHelper.gitPath)
 
-/// Run the given buildscript with FAKE.exe
-let executeFAKEWithOutput workingDirectory script fsiargs envArgs =
-    let exitCode = 
-        Process.execSimple
-            (fakeStartInfo script workingDirectory "" fsiargs envArgs)
-            TimeSpan.MaxValue
-    System.Threading.Thread.Sleep 1000
-    exitCode
+///// Run the given buildscript with FAKE.exe
+//let executeFAKEWithOutput workingDirectory script fsiargs envArgs =
+//    let exitCode = 
+//        Process.execSimple
+//            (fakeStartInfo script workingDirectory "" fsiargs envArgs)
+//            TimeSpan.MaxValue
+//    System.Threading.Thread.Sleep 1000
+//    exitCode
 
 // Documentation
-let buildDocumentationTarget fsiargs target =
-    Trace.trace (sprintf "Building documentation (%s), this could take some time, please wait..." target)
-    let exit = executeFAKEWithOutput "docsrc/tools" "generate.fsx" fsiargs ["target", target]
-    if exit <> 0 then
-        failwith "generating reference documentation failed"
-    ()
+//let buildDocumentationTarget fsiargs target =
+//    Trace.trace (sprintf "Building documentation (%s), this could take some time, please wait..." target)
+//    let exit = executeFAKEWithOutput "docsrc/tools" "generate.fsx" fsiargs ["target", target]
+//    if exit <> 0 then
+//        failwith "generating reference documentation failed"
+//    ()
 
-Target.create "GenerateReferenceDocs" (fun _ ->
-    buildDocumentationTarget "-d:RELEASE -d:REFERENCE" "Default"
-)
+// Paths with template/source/output locations
+let bin        = __SOURCE_DIRECTORY__ @@ "../../bin"
+let content    = __SOURCE_DIRECTORY__ @@ "docsrc/content"
+let output     = __SOURCE_DIRECTORY__ @@ "../../docs"
+let files      = __SOURCE_DIRECTORY__ @@ "../files"
+let templates  = __SOURCE_DIRECTORY__ @@ "docsrc/tools/templates"
+let formatting = __SOURCE_DIRECTORY__ @@ "packages\FSharp.Formatting\\"
+let docTemplate = "docpage.cshtml"
 
-let generateHelp fail debug =
-    let args =
-        if debug then "--define:HELP"
-        else "--define:RELEASE --define:HELP"
-    try
-        buildDocumentationTarget args "Default"
-        Trace.traceImportant "Help generated"
-    with
-    | e when fail ->
-        Trace.traceImportant "generating help documentation failed"
-        Trace.traceException e
-    | _ ->
-        Trace.traceImportant "generating help documentation failed"
+//Target.create "GenerateReferenceDocs" (fun _ ->
+//    buildDocumentationTarget "-d:RELEASE -d:REFERENCE" "Default"
+
+
+//    FSFormatting.createDocs (fun s ->
+//        s)
+
+//)
+
+//let generateHelp fail debug =
+//    let args =
+//        if debug then "--define:HELP"
+//        else "--define:RELEASE --define:HELP"
+//    try
+//        buildDocumentationTarget args "Default"
+//        Trace.traceImportant "Help generated"
+//    with
+//    | e when fail ->
+//        Trace.traceImportant "generating help documentation failed"
+//        Trace.traceException e
+//    | _ ->
+//        Trace.traceImportant "generating help documentation failed"
         
-Target.create "GenerateHelp" (fun _ ->
-    File.delete "docsrc/content/release-notes.md"
-    Shell.CopyFile "docsrc/content/" "RELEASE_NOTES.md"
-    Shell.Rename "docsrc/content/release-notes.md" "docsrc/content/RELEASE_NOTES.md"
+//Target.create "GenerateDocs" (fun _ ->
+//    File.delete "docsrc/content/release-notes.md"
+//    Shell.copyFile "docsrc/content/" "RELEASE_NOTES.md"
+//    Shell.rename "docsrc/content/release-notes.md" "docsrc/content/RELEASE_NOTES.md"
 
-    File.delete "docsrc/content/license.md"
-    Shell.CopyFile "docsrc/content/" "LICENSE.txt"
-    Shell.Rename "docsrc/content/license.md" "docsrc/content/LICENSE.txt"
+//    File.delete "docsrc/content/license.md"
+//    Shell.copyFile "docsrc/content/" "LICENSE.txt"
+//    Shell.rename "docsrc/content/license.md" "docsrc/content/LICENSE.txt"
 
-    generateHelp true false
-)
+//    let layoutRootsAll = new System.Collections.Generic.Dictionary<string, string list>()
+//    layoutRootsAll.Add("en",[ templates; formatting @@ "templates"
+//                              formatting @@ "templates/reference" ])
+//    DirectoryInfo.getSubDirectories (DirectoryInfo.ofPath templates)
+//    |> Seq.iter (fun d ->
+//                    let name = d.Name
+//                    if name.Length = 2 || name.Length = 3 then
+//                        layoutRootsAll.Add(
+//                                name, [templates @@ name
+//                                       formatting @@ "templates"
+//                                       formatting @@ "templates/reference" ]))
 
-Target.create "GenerateHelpDebug" (fun _ ->
-    File.delete "docsrc/content/release-notes.md"
-    Shell.CopyFile "docsrc/content/" "RELEASE_NOTES.md"
-    Shell.Rename "docsrc/content/release-notes.md" "docsrc/content/RELEASE_NOTES.md"
+//    let subdirs =
+//        [ content; ]
+//    for dir in subdirs do
+//        let sub = "." // Everything goes into the same output directory here
+//        let langSpecificPath(lang, path:string) =
+//            path.Split([|'/'; '\\'|], System.StringSplitOptions.RemoveEmptyEntries)
+//            |> Array.exists(fun i -> i = lang)
+//        let layoutRoots =
+//            let key = layoutRootsAll.Keys |> Seq.tryFind (fun i -> langSpecificPath(i, dir))
+//            match key with
+//            | Some lang -> layoutRootsAll.[lang]
+//            | None -> layoutRootsAll.["en"] // "en" is the default language
 
-    File.delete "docsrc/content/license.md"
-    Shell.CopyFile "docsrc/content/" "LICENSE.txt"
-    Shell.Rename "docsrc/content/license.md" "docsrc/content/LICENSE.txt"
+//        FSFormatting.createDocs (fun args ->
+//            { args with
+//                Source = content
+//                OutputDirectory = output @@ sub
+//                ToolPath = formatting
+//                LayoutRoots = layoutRoots
+//                Template = docTemplate }
+//    )
+//   // generateHelp true false
+//)
 
-    generateHelp true true
-)
+//Target.create "GenerateHelpDebug" (fun _ ->
+//    File.delete "docsrc/content/release-notes.md"
+//    Shell.CopyFile "docsrc/content/" "RELEASE_NOTES.md"
+//    Shell.Rename "docsrc/content/release-notes.md" "docsrc/content/RELEASE_NOTES.md"
 
-Target.create "KeepRunning" (fun _ ->
-    //use watcher = 
+//    File.delete "docsrc/content/license.md"
+//    Shell.CopyFile "docsrc/content/" "LICENSE.txt"
+//    Shell.Rename "docsrc/content/license.md" "docsrc/content/LICENSE.txt"
+
+//    generateHelp true true
+//)
+
+//Target.create "KeepRunning" (fun _ ->
+//    //use watcher = 
         
-    //    Fake.FileSystem.(!!) "docsrc/content/**/*.*" 
-    //    |> Fake.ChangeWatcher.WatchChanges (fun changes ->
-    //     generateHelp' true true
-    //)
+//    //    Fake.FileSystem.(!!) "docsrc/content/**/*.*" 
+//    //    |> Fake.ChangeWatcher.WatchChanges (fun changes ->
+//    //     generateHelp' true true
+//    //)
 
-    //Trace.traceImportant "Waiting for help edits. Press any key to stop."
+//    //Trace.traceImportant "Waiting for help edits. Press any key to stop."
 
-    //System.Console.ReadKey() |> ignore
+//    //System.Console.ReadKey() |> ignore
 
-    //watcher.Dispose()
-    ()
-)
+//    //watcher.Dispose()
+//    ()
+//)
 
-//Target.create "GenerateDocs" Target.DoNothing
+//let createIndexFsx lang =
+//    let content = """(*** hide ***)
+//// This block of code is omitted in the generated HTML documentation. Use
+//// it to define helpers that you do not want to show in the documentation.
+//#I "../../../bin"
 
-let createIndexFsx lang =
-    let content = """(*** hide ***)
-// This block of code is omitted in the generated HTML documentation. Use
-// it to define helpers that you do not want to show in the documentation.
-#I "../../../bin"
+//(**
+//F# Project Scaffold ({0})
+//=========================
+//*)
+//"""
+//    let targetDir = "docsrc/content" </> lang
+//    let targetFile = targetDir </> "index.fsx"
+//    Directory.ensure targetDir
+//    File.WriteAllText(targetFile, System.String.Format(content, lang))
 
-(**
-F# Project Scaffold ({0})
-=========================
-*)
-"""
-    let targetDir = "docsrc/content" </> lang
-    let targetFile = targetDir </> "index.fsx"
-    Directory.ensure targetDir
-    File.WriteAllText(targetFile, System.String.Format(content, lang))
+//Target.create "AddLangDocs" (fun _ ->
+//    let args = System.Environment.GetCommandLineArgs()
+//    if args.Length < 4 then
+//        failwith "Language not specified."
 
-Target.create "AddLangDocs" (fun _ ->
-    let args = System.Environment.GetCommandLineArgs()
-    if args.Length < 4 then
-        failwith "Language not specified."
+//    args.[3..]
+//    |> Seq.iter (fun lang ->
+//        if lang.Length <> 2 && lang.Length <> 3 then
+//            failwithf "Language must be 2 or 3 characters (ex. 'de', 'fr', 'ja', 'gsw', etc.): %s" lang
 
-    args.[3..]
-    |> Seq.iter (fun lang ->
-        if lang.Length <> 2 && lang.Length <> 3 then
-            failwithf "Language must be 2 or 3 characters (ex. 'de', 'fr', 'ja', 'gsw', etc.): %s" lang
+//        let templateFileName = "template.cshtml"
+//        let templateDir = "docsrc/tools/templates"
+//        let langTemplateDir = templateDir </> lang
+//        let langTemplateFileName = langTemplateDir </> templateFileName
 
-        let templateFileName = "template.cshtml"
-        let templateDir = "docsrc/tools/templates"
-        let langTemplateDir = templateDir </> lang
-        let langTemplateFileName = langTemplateDir </> templateFileName
+//        if File.Exists(langTemplateFileName) then
+//            failwithf "Documents for specified language '%s' have already been added." lang
 
-        if File.Exists(langTemplateFileName) then
-            failwithf "Documents for specified language '%s' have already been added." lang
+//        Directory.ensure langTemplateDir
+//        Shell.Copy langTemplateDir [ templateDir </> templateFileName ]
 
-        Directory.ensure langTemplateDir
-        Shell.Copy langTemplateDir [ templateDir </> templateFileName ]
-
-        createIndexFsx lang)
-)
+//        createIndexFsx lang)
+//)
 
 // --------------------------------------------------------------------------------------
 // Release Scripts
@@ -356,30 +379,31 @@ Target.create "AddLangDocs" (fun _ ->
 //    |> Async.RunSynchronously
 //)
 
-Target.create "BuildPackage" Target.DoNothing
-
+Target.create "BuildPackage" ignore 
 // --------------------------------------------------------------------------------------
 // Run all targets by default. Invoke 'build <Target>' to override
 
-Target.create "All" Target.DoNothing
+
+Target.create "GenerateReferenceDocs" ignore 
+
+Target.create "All" ignore
 
 "Clean"
   ==>"AssemblyInfo"
   ==> "Build"
   ==> "CopyBinaries"
   ==> "RunTests"
-  ==> "GenerateReferenceDocs"
- // ==> "GenerateDocs"
+  //==> "GenerateReferenceDocs"
+  //==> "GenerateDocs"
   ==> "NuGet"
   ==> "BuildPackage"
   ==> "All"
 
-"GenerateHelp"
-  ==> "GenerateReferenceDocs"
- // ==> "GenerateDocs"
+//"GenerateReferenceDocs"
+//  ==> "GenerateDocs"
 
-"GenerateHelpDebug"
-  ==> "KeepRunning"
+//"GenerateHelpDebug"
+//  ==> "KeepRunning"
 
 //"Clean"
 //  ==> "Release"
