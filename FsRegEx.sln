@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{63297B98-5CED-492C-A5B7-A5B4F73CF142}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{63297B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{A6A6AF7D-D6E3-442D-9B1E-58CC91879BE1}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FsRegEx", "src\FsRegEx\FsRegEx.fsproj", "{A44BCE88-C621-4102-BD37-95C4843D50CE}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FsRegEx", "src\FsRegEx\FsRegEx.fsproj", "{A44BCE88-C621-4102-BD37-95C4843D50CE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{BF60BC93-E09B-4E5F-9D85-95A519479D54}"
 	ProjectSection(SolutionItems) = preProject
@@ -23,6 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{BF60
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{83F16175-43B1-4C90-A1EE-8E351C33435D}"
 	ProjectSection(SolutionItems) = preProject
+		docsrc\tools\FSharp.Formatting.fsx = docsrc\tools\FSharp.Formatting.fsx
 		docsrc\tools\generate.fsx = docsrc\tools\generate.fsx
 		docsrc\tools\templates\template.cshtml = docsrc\tools\templates\template.cshtml
 	EndProjectSection
@@ -40,7 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{8E6D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ED8079DD-2B06-4030-9F0F-DC548F98E1C4}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FsRegEx.Tests", "tests\FsRegEx.Tests\FsRegEx.Tests.fsproj", "{9D0671EB-3ADB-4866-997D-BA677D4347AA}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FsRegEx.Tests", "tests\FsRegEx.Tests\FsRegEx.Tests.fsproj", "{9D0671EB-3ADB-4866-997D-BA677D4347AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{078A9C52-DDC1-46F4-9235-9E6C89C87AFD}"
 	ProjectSection(SolutionItems) = preProject
@@ -54,10 +55,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{7C6D08
 		appveyor.yml = appveyor.yml
 		build.cmd = build.cmd
 		build.fsx = build.fsx
+		build.proj = build.proj
 		build.sh = build.sh
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Email.Tests", "tests\Email.Tests\Email.Tests.fsproj", "{0D1BE493-6880-4EE4-96F7-F9D8665310F0}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Email.Tests", "tests\Email.Tests\Email.Tests.fsproj", "{0D1BE493-6880-4EE4-96F7-F9D8665310F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{72A309C4-6DDB-478E-A7BA-78613372772E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,5 +90,8 @@ Global
 		{8E6D5255-776D-4B61-85F9-73C37AA1FB9A} = {A6A6AF7D-D6E3-442D-9B1E-58CC91879BE1}
 		{9D0671EB-3ADB-4866-997D-BA677D4347AA} = {ED8079DD-2B06-4030-9F0F-DC548F98E1C4}
 		{0D1BE493-6880-4EE4-96F7-F9D8665310F0} = {ED8079DD-2B06-4030-9F0F-DC548F98E1C4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66CFF8F9-0961-4245-9C27-746AEF03CC95}
 	EndGlobalSection
 EndGlobal

@@ -1,14 +1,6 @@
 source https://nuget.org/api/v2
-source https://ci.appveyor.com/nuget/fsharp-formatting
 
 nuget FSharp.Core
-
-nuget Fake.Core 5.0.0-rc004
-nuget Fake.IO.FileSystem 5.0.0-rc004
-nuget Fake.DotNet.Cli 5.0.0-rc004
-nuget Fake.Tools.Git 5.0.0-rc004
-
-nuget FSharp.Formatting prerelease
 
 github fsharp/FAKE modules/Octokit/Octokit.fsx
 
@@ -16,3 +8,28 @@ nuget Expecto
 nuget Expecto.BenchmarkDotNet
 nuget Expecto.FsCheck
 nuget Expecto.VisualStudio.TestAdapter version_in_path: true
+
+clitool dotnet-fake
+
+group Formatting
+source https://nuget.org/api/v2
+source https://ci.appveyor.com/nuget/fsharp-formatting
+
+nuget FSharp.Formatting prerelease
+nuget FSharp.Formatting.CommandTool prerelease
+
+group FakeBuild
+source https://api.nuget.org/v3/index.json
+
+storage: none
+
+nuget Fake.Core.Target
+nuget Fake.IO.FileSystem
+nuget Fake.DotNet.Cli
+nuget Fake.Tools.Git
+nuget Fake.DotNet.MSBuild
+nuget Fake.Core.ReleaseNotes 
+nuget Fake.DotNet.AssemblyInfoFile
+nuget Fake.DotNet.Paket
+nuget Fake.DotNet.Testing.Expecto 
+nuget Fake.DotNet.FSFormatting 
