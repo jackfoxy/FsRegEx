@@ -1,5 +1,4 @@
 source https://nuget.org/api/v2
-source https://ci.appveyor.com/nuget/fsharp-formatting
 
 nuget FSharp.Core
 
@@ -9,12 +8,17 @@ nuget Expecto
 nuget Expecto.BenchmarkDotNet
 nuget Expecto.FsCheck
 nuget Expecto.VisualStudio.TestAdapter version_in_path: true
-nuget FSharp.Formatting prerelease
 
 clitool dotnet-fake
 
-group FakeBuild
+group Formatting
+source https://nuget.org/api/v2
+source https://ci.appveyor.com/nuget/fsharp-formatting
 
+nuget FSharp.Formatting prerelease
+nuget FSharp.Formatting.CommandTool prerelease
+
+group FakeBuild
 source https://api.nuget.org/v3/index.json
 
 storage: none

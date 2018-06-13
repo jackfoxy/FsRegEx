@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>VerbalExpressions - FsRegEx</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="Jack Fox"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <link type="text/css" rel="stylesheet" href="file://E:\GitRepos\FsRegEx\docs/content/style.css" />
+    <script type="text/javascript" src="file://E:\GitRepos\FsRegEx\docs/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/fsharp/FsRegEx">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="file://E:\GitRepos\FsRegEx\docs/index.html">FsRegEx</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>VerbalExpressions</h1>
+<p>
+  <span>Namespace: global</span><br />
+  </p>
+<div class="xmldoc">
+<p>Functions supporting composable verbal expression natural language regular expressions.</p>
+
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '40', 40)" onmouseover="showTip(event, '40', 40)">
+            add value fsRegEx
+          </code>
+          <div class="tip" id="40">
+            <strong>Signature:</strong> value:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L83-83" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Append unescaped literal expression to the expression.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '41', 41)" onmouseover="showTip(event, '41', 41)">
+            any value fsRegEx
+          </code>
+          <div class="tip" id="41">
+            <strong>Signature:</strong> value:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L165-165" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Same as anyOf.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '42', 42)" onmouseover="showTip(event, '42', 42)">
+            anyOf value fsRegEx
+          </code>
+          <div class="tip" id="42">
+            <strong>Signature:</strong> value:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L160-160" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Matches any single character included in the specified set of escaped characters; [value]</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '43', 43)" onmouseover="showTip(event, '43', 43)">
+            anything fsRegEx
+          </code>
+          <div class="tip" id="43">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L105-105" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Zero or more of any character; (.*)</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '44', 44)" onmouseover="showTip(event, '44', 44)">
+            anythingBut value fsRegEx
+          </code>
+          <div class="tip" id="44">
+            <strong>Signature:</strong> value:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L108-108" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Zero or more of any character except escaped character(s); ([^value]*)</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '45', 45)" onmouseover="showTip(event, '45', 45)">
+            backReference ordinal fsRegEx
+          </code>
+          <div class="tip" id="45">
+            <strong>Signature:</strong> ordinal:int -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L150-150" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Refers to nth occurence of capturing groups; \ordinal</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '46', 46)" onmouseover="showTip(event, '46', 46)">
+            beginCapture fsRegEx
+          </code>
+          <div class="tip" id="46">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L222-222" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Begin capture group; (</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '47', 47)" onmouseover="showTip(event, '47', 47)">
+            beginCaptureNamed groupName fsRegEx
+          </code>
+          <div class="tip" id="47">
+            <strong>Signature:</strong> groupName:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L225-225" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Begin named capture group ;(?<groupName></p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '48', 48)" onmouseover="showTip(event, '48', 48)">
+            br fsRegEx
+          </code>
+          <div class="tip" id="48">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L124-124" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Same as lineBreak; \n</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '49', 49)" onmouseover="showTip(event, '49', 49)">
+            capture input groupName fsRegEx
+          </code>
+          <div class="tip" id="49">
+            <strong>Signature:</strong> input:string -&gt; groupName:string -&gt; fsRegEx:FsRegEx -&gt; string<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L51-51" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Match and select groupname value.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '50', 50)" onmouseover="showTip(event, '50', 50)">
+            digit fsRegEx
+          </code>
+          <div class="tip" id="50">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L144-144" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Matches any decimal digit; \d</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '51', 51)" onmouseover="showTip(event, '51', 51)">
+            endCapture fsRegEx
+          </code>
+          <div class="tip" id="51">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L230-230" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>End capture group; )</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '52', 52)" onmouseover="showTip(event, '52', 52)">
+            endOfLine fsRegEx
+          </code>
+          <div class="tip" id="52">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L76-76" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Mark the expression to end at the last character of the line; $</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '53', 53)" onmouseover="showTip(event, '53', 53)">
+            exists f fsRegEx
+          </code>
+          <div class="tip" id="53">
+            <strong>Signature:</strong> f:(FsRegEx -&gt; bool) -&gt; fsRegEx:FsRegEx -&gt; bool<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L289-289" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Evaluates the boolean function on the FsRegEx</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '54', 54)" onmouseover="showTip(event, '54', 54)">
+            find value fsRegEx
+          </code>
+          <div class="tip" id="54">
+            <strong>Signature:</strong> value:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L98-98" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Append escaped literal expression to the expression. (Same as then'.)</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '55', 55)" onmouseover="showTip(event, '55', 55)">
+            firstMatch input fsRegEx
+          </code>
+          <div class="tip" id="55">
+            <strong>Signature:</strong> input:string -&gt; fsRegEx:FsRegEx -&gt; FsMatch<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L6-6" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Searches the specified input string for the first occurrence of the FsRegEx.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '56', 56)" onmouseover="showTip(event, '56', 56)">
+            fold f state fsRegEx
+          </code>
+          <div class="tip" id="56">
+            <strong>Signature:</strong> f:(&#39;State -&gt; FsRegEx -&gt; &#39;State) -&gt; state:&#39;State -&gt; fsRegEx:FsRegEx -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'State                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L285-285" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Applies a function to a FsRegEx and a state returning a state</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '57', 57)" onmouseover="showTip(event, '57', 57)">
+            foldBack f fsRegEx state
+          </code>
+          <div class="tip" id="57">
+            <strong>Signature:</strong> f:(FsRegEx -&gt; &#39;State -&gt; &#39;State) -&gt; fsRegEx:FsRegEx -&gt; state:&#39;State -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'State                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L287-287" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Applies a function to a FsRegEx and a state returning a state</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '58', 58)" onmouseover="showTip(event, '58', 58)">
+            fsRegExOrFsRegEx (...)
+          </code>
+          <div class="tip" id="58">
+            <strong>Signature:</strong> regexOptions:RegexOptions -&gt; fsRegEx:FsRegEx -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L215-215" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Return new FsRegEx of two FsRegExs or'ed.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '59', 59)" onmouseover="showTip(event, '59', 59)">
+            groupNames fsRegEx
+          </code>
+          <div class="tip" id="59">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; string array<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L54-54" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Returns an array of capturing group names for the regular expression.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '60', 60)" onmouseover="showTip(event, '60', 60)">
+            groupNumbers fsRegEx
+          </code>
+          <div class="tip" id="60">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; int array<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L57-57" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Returns an array of capturing group numbers that correspond to group names in an array.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '61', 61)" onmouseover="showTip(event, '61', 61)">
+            isMatch value fsRegEx
+          </code>
+          <div class="tip" id="61">
+            <strong>Signature:</strong> value:string -&gt; fsRegEx:FsRegEx -&gt; bool<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L60-60" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Indicates whether the regular expression finds a match in the input string.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '62', 62)" onmouseover="showTip(event, '62', 62)">
+            isMatchAt value startAt fsRegEx
+          </code>
+          <div class="tip" id="62">
+            <strong>Signature:</strong> value:string -&gt; startAt:int -&gt; fsRegEx:FsRegEx -&gt; bool<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L63-63" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Indicates whether the regular expression finds a match in the input string beginning at the specified starting position.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '63', 63)" onmouseover="showTip(event, '63', 63)">
+            iter f fsRegEx
+          </code>
+          <div class="tip" id="63">
+            <strong>Signature:</strong> f:(FsRegEx -&gt; unit) -&gt; fsRegEx:FsRegEx -&gt; unit<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L281-281" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Executes a function on a FsRegEx.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '64', 64)" onmouseover="showTip(event, '64', 64)">
+            lineBreak fsRegEx
+          </code>
+          <div class="tip" id="64">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L121-121" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Matches universal line break expression; \n</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '65', 65)" onmouseover="showTip(event, '65', 65)">
+            map f fsRegEx
+          </code>
+          <div class="tip" id="65">
+            <strong>Signature:</strong> f:(FsRegEx -&gt; FsRegEx) -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L283-283" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Transforms a FsRegEx  with a mapping function</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '66', 66)" onmouseover="showTip(event, '66', 66)">
+            matchAt input startAt fsRegEx
+          </code>
+          <div class="tip" id="66">
+            <strong>Signature:</strong> input:string -&gt; startAt:int -&gt; fsRegEx:FsRegEx -&gt; FsMatch<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L9-9" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Searches the specified input string for the first occurrence of the FsRegEx beginning at the specified starting position.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '67', 67)" onmouseover="showTip(event, '67', 67)">
+            matchAtFor input startAt length fsRegEx
+          </code>
+          <div class="tip" id="67">
+            <strong>Signature:</strong> input:string -&gt; startAt:int -&gt; length:int -&gt; fsRegEx:FsRegEx -&gt; FsMatch<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L18-18" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Searches the specified input string for the first occurrence of the FsRegEx beginning at the starting position for the length.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '68', 68)" onmouseover="showTip(event, '68', 68)">
+            matches input fsRegEx
+          </code>
+          <div class="tip" id="68">
+            <strong>Signature:</strong> input:string -&gt; fsRegEx:FsRegEx -&gt; FsMatch []<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L12-12" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Searches the specified input string for all occurrences of a regular expression.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '69', 69)" onmouseover="showTip(event, '69', 69)">
+            matchesAt input startAt fsRegEx
+          </code>
+          <div class="tip" id="69">
+            <strong>Signature:</strong> input:string -&gt; startAt:int -&gt; fsRegEx:FsRegEx -&gt; FsMatch []<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L15-15" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Searches the input string for all occurrence of a regular expression, beginning at the specified starting position.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '70', 70)" onmouseover="showTip(event, '70', 70)">
+            maybe value fsRegEx
+          </code>
+          <div class="tip" id="70">
+            <strong>Signature:</strong> value:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L100-100" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Add escaped string to the expression that might appear once (or not); (value)?</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '71', 71)" onmouseover="showTip(event, '71', 71)">
+            multiple value fsRegEx
+          </code>
+          <div class="tip" id="71">
+            <strong>Signature:</strong> value:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L194-194" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The escaped expression 1 or more times; (value)+</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '72', 72)" onmouseover="showTip(event, '72', 72)">
+            multipleFsRegEx sourceFsRegEx fsRegEx
+          </code>
+          <div class="tip" id="72">
+            <strong>Signature:</strong> sourceFsRegEx:FsRegEx -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L199-199" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The FsRegEx 1 or more times; (sourceFsRegEx)+</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '73', 73)" onmouseover="showTip(event, '73', 73)">
+            namedBackReference groupname fsRegEx
+          </code>
+          <div class="tip" id="73">
+            <strong>Signature:</strong> groupname:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L156-156" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Refers to named capturing group; \k<groupname></p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '74', 74)" onmouseover="showTip(event, '74', 74)">
+            namedBlock name arg2
+          </code>
+          <div class="tip" id="74">
+            <strong>Signature:</strong> name:SupportedNamedBlock -&gt; FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L269-269" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Matches any single character in the supported named block; \p{name}</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '75', 75)" onmouseover="showTip(event, '75', 75)">
+            nonDigit fsRegEx
+          </code>
+          <div class="tip" id="75">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L147-147" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Matches any nondigit; \D</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '76', 76)" onmouseover="showTip(event, '76', 76)">
+            nonWhiteSpace fsRegEx
+          </code>
+          <div class="tip" id="76">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L132-132" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Matches any non-white-space character; \S.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '77', 77)" onmouseover="showTip(event, '77', 77)">
+            nonWordCharacter fsRegEx
+          </code>
+          <div class="tip" id="77">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L141-141" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Matches any nonword character; \W</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '78', 78)" onmouseover="showTip(event, '78', 78)">
+            notNamedBlock name arg2
+          </code>
+          <div class="tip" id="78">
+            <strong>Signature:</strong> name:SupportedNamedBlock -&gt; FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L275-275" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Matches any single character that is not in the supported named block; \P{name}</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '79', 79)" onmouseover="showTip(event, '79', 79)">
+            notUnicodeCategory category arg2
+          </code>
+          <div class="tip" id="79">
+            <strong>Signature:</strong> category:UnicodeGeneralCategory -&gt; FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L263-263" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Matches any single character that is not in the Unicode general category; \P{name}</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '80', 80)" onmouseover="showTip(event, '80', 80)">
+            or&#39; regularExpression fsRegEx
+          </code>
+          <div class="tip" id="80">
+            <strong>Signature:</strong> regularExpression:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L204-204" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Or's the regular expression to the regular expression in a FsRegEx.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '81', 81)" onmouseover="showTip(event, '81', 81)">
+            range collection fsRegEx
+          </code>
+          <div class="tip" id="81">
+            <strong>Signature:</strong> collection:seq&lt;obj&gt; -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L167-167" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Add expression to match a range (or multiple ranges), unescaped values.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '82', 82)" onmouseover="showTip(event, '82', 82)">
+            repeatBetweenPrevious n m arg3
+          </code>
+          <div class="tip" id="82">
+            <strong>Signature:</strong> n:int -&gt; m:int -&gt; FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L241-241" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Repeat previous number of times between n and m; {n,m}</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '83', 83)" onmouseover="showTip(event, '83', 83)">
+            repeatPrevious n arg2
+          </code>
+          <div class="tip" id="83">
+            <strong>Signature:</strong> n:int -&gt; FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L233-233" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Repeat previous exact number of times; {n}</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '84', 84)" onmouseover="showTip(event, '84', 84)">
+            replace input replacement fsRegEx
+          </code>
+          <div class="tip" id="84">
+            <strong>Signature:</strong> input:string -&gt; replacement:string -&gt; fsRegEx:FsRegEx -&gt; string<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L21-21" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>In input string replaces all strings that match regular expression pattern with replacement string.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '85', 85)" onmouseover="showTip(event, '85', 85)">
+            replaceByMatch input evalutor fsRegEx
+          </code>
+          <div class="tip" id="85">
+            <strong>Signature:</strong> input:string -&gt; evalutor:MatchEvaluator -&gt; fsRegEx:FsRegEx -&gt; string<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L24-24" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>In input string replaces all strings that match regular expression with string returned by MatchEvaluator delegate.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '86', 86)" onmouseover="showTip(event, '86', 86)">
+            replaceByMatchMaxTimes (...)
+          </code>
+          <div class="tip" id="86">
+            <strong>Signature:</strong> input:string -&gt; evalutor:MatchEvaluator -&gt; count:int -&gt; fsRegEx:FsRegEx -&gt; string<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L30-30" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>In input string replaces a specified maximum number of strings that match a regular expression with string returned by MatchEvaluator delegate.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '87', 87)" onmouseover="showTip(event, '87', 87)">
+            replaceByMatchMaxTimesStartAt (...)
+          </code>
+          <div class="tip" id="87">
+            <strong>Signature:</strong> input:string -&gt; evalutor:MatchEvaluator -&gt; count:int -&gt; startAt:int -&gt; fsRegEx:FsRegEx -&gt; string<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L36-36" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>In input string beginning at start at position replaces a specified maximum number of strings that match a regular expression with string returned by MatchEvaluator delegate.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '88', 88)" onmouseover="showTip(event, '88', 88)">
+            replaceMaxTimes (...)
+          </code>
+          <div class="tip" id="88">
+            <strong>Signature:</strong> input:string -&gt; replacement:string -&gt; count:int -&gt; fsRegEx:FsRegEx -&gt; string<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L27-27" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>In input string replaces a specified maximum number of strings that match regular expression with replacement string.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '89', 89)" onmouseover="showTip(event, '89', 89)">
+            replaceMaxTimesStartAt (...)
+          </code>
+          <div class="tip" id="89">
+            <strong>Signature:</strong> input:string -&gt; replacement:string -&gt; count:int -&gt; startAt:int -&gt; fsRegEx:FsRegEx -&gt; string<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L33-33" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>In input string beginning at start at position replaces a specified maximum number of strings that match regular expression with replacement string.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '90', 90)" onmouseover="showTip(event, '90', 90)">
+            resetRegexOptions (...)
+          </code>
+          <div class="tip" id="90">
+            <strong>Signature:</strong> newRegexOptions:RegexOptions option -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L48-48" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Return new FsRegEx with new RegExOptions.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '91', 91)" onmouseover="showTip(event, '91', 91)">
+            something fsRegEx
+          </code>
+          <div class="tip" id="91">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L113-113" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>One or more of any character; (.+)</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '92', 92)" onmouseover="showTip(event, '92', 92)">
+            somethingBut value fsRegEx
+          </code>
+          <div class="tip" id="92">
+            <strong>Signature:</strong> value:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L116-116" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>One or more of any character except escaped character; ([^%s]+)</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '93', 93)" onmouseover="showTip(event, '93', 93)">
+            split input fsRegEx
+          </code>
+          <div class="tip" id="93">
+            <strong>Signature:</strong> input:string -&gt; fsRegEx:FsRegEx -&gt; string array<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L39-39" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Splits input string into an array of substrings at the positions defined by regular expression.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '94', 94)" onmouseover="showTip(event, '94', 94)">
+            splitMaxTimes input count fsRegEx
+          </code>
+          <div class="tip" id="94">
+            <strong>Signature:</strong> input:string -&gt; count:int -&gt; fsRegEx:FsRegEx -&gt; string array<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L42-42" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Splits input string a specified maximum number of times into an array of substrings at the positions defined by regular expression.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '95', 95)" onmouseover="showTip(event, '95', 95)">
+            splitMaxTimesStartAt (...)
+          </code>
+          <div class="tip" id="95">
+            <strong>Signature:</strong> input:string -&gt; count:int -&gt; startAt:int -&gt; fsRegEx:FsRegEx -&gt; string array<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L45-45" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Splits input string, begining at start position, a specified maximum number of times into an array of substrings at the positions defined by regular expression.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '96', 96)" onmouseover="showTip(event, '96', 96)">
+            startOfLine fsRegEx
+          </code>
+          <div class="tip" id="96">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L69-69" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Mark the expression to start at the beginning of the line; ^</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '97', 97)" onmouseover="showTip(event, '97', 97)">
+            tab fsRegEx
+          </code>
+          <div class="tip" id="97">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L126-126" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Matches a tab character; \t</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '98', 98)" onmouseover="showTip(event, '98', 98)">
+            then&#39; value fsRegEx
+          </code>
+          <div class="tip" id="98">
+            <strong>Signature:</strong> value:string -&gt; fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L93-93" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Append escaped literal expression to the expression. (Same as find.)</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '99', 99)" onmouseover="showTip(event, '99', 99)">
+            toString fsRegEx
+          </code>
+          <div class="tip" id="99">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; string<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L66-66" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Value of regular expression.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '100', 100)" onmouseover="showTip(event, '100', 100)">
+            unicode nnnn arg2
+          </code>
+          <div class="tip" id="100">
+            <strong>Signature:</strong> nnnn:string -&gt; FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L252-252" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Matches a Unicode character by using hexadecimal representation  (exactly four digits, as represented by nnnn); \unnnn</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '101', 101)" onmouseover="showTip(event, '101', 101)">
+            unicodeCategory category arg2
+          </code>
+          <div class="tip" id="101">
+            <strong>Signature:</strong> category:UnicodeGeneralCategory -&gt; FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L257-257" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Matches any single character in the Unicode general category; \p{name}</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '102', 102)" onmouseover="showTip(event, '102', 102)">
+            whiteSpace fsRegEx
+          </code>
+          <div class="tip" id="102">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L129-129" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Matches any white-space character; \s</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '103', 103)" onmouseover="showTip(event, '103', 103)">
+            word fsRegEx
+          </code>
+          <div class="tip" id="103">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L135-135" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Expression to match a word; \w+</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '104', 104)" onmouseover="showTip(event, '104', 104)">
+            wordCharacter fsRegEx
+          </code>
+          <div class="tip" id="104">
+            <strong>Signature:</strong> fsRegEx:FsRegEx -&gt; FsRegEx<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsharp/FsRegEx/tree/master/src/FsRegEx/VerbalExpressions.fs#L138-138" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Matches any word character; \w</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="file://E:\GitRepos\FsRegEx\docs/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
+            <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+                <li class="nav-header">FsRegEx</li>
+                <li><a href="file://E:\GitRepos\FsRegEx\docs/index.html">Home page</a></li>
+                <li class="divider"></li>
+                <li><a href="http://nuget.org/packages/FsRegEx">Get Library via NuGet</a></li>
+                <li><a href="https://github.com/fsharp/FsRegEx">Source Code on GitHub</a></li>
+                <li><a href="file://E:\GitRepos\FsRegEx\docs/license.html">License</a></li>
+                <li><a href="file://E:\GitRepos\FsRegEx\docs/release-notes.html">Release Notes</a></li>
+
+                <li class="nav-header">Examples</li>
+                <li><a href="file://E:\GitRepos\FsRegEx\docs/matching.html">Matching</a></li>
+                <li><a href="file://E:\GitRepos\FsRegEx\docs/group.html">Match Groups</a></li>
+                <li><a href="file://E:\GitRepos\FsRegEx\docs/replacesplit.html">Replace and Split</a></li>
+                <li><a href="file://E:\GitRepos\FsRegEx\docs/capture.html">Capture</a></li>
+
+                <li class="nav-header">Documentation</li>
+                <li><a href="file://E:\GitRepos\FsRegEx\docs/reference/index.html">API Reference</a></li>
+
+                <li class="nav-header">More...</li>
+                <li><a href="file://E:\GitRepos\FsRegEx\docs/emailregex.html">On the Futility of Email Regex Validation</a></li>
+                <li><a href="file://E:\GitRepos\FsRegEx\docs/tutorial.html">F# Verbal Expressions Tutorial</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/fsharp/FsRegEx"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+  </body>
+  </html>
