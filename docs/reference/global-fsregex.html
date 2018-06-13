@@ -47,7 +47,44 @@
 <!-- Render nested types and modules, if there are any -->
   <h2>Nested types and modules</h2>
   <div>
-      <table class="table table-bordered module-list">
+      <table class="table table-bordered type-list">
+    <thead>
+      <tr><td>Type</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="type-name">
+            <a href="fsregex-fsgroup.html">FsGroup</a>
+          </td>
+          <td class="xmldoc">
+          <p>Composable wrapping type for System.Text.RegularExpressions.Group.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsregex-fsmatch.html">FsMatch</a>
+          </td>
+          <td class="xmldoc">
+          <p>Composable wrapping type for System.Text.RegularExpressions.Match. Represents the results from a single regular expression match.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsregex-fsregex.html">FsRegEx</a>
+          </td>
+          <td class="xmldoc">
+          <p>Composable immutable wrapping type for System.Text.RegularExpressions.Regex.</p>
+
+
+          </td>
+        </tr>
+    </tbody>
+  </table>
+  <table class="table table-bordered module-list">
     <thead>
       <tr><td>Module</td><td>Description</td></tr>
     </thead>
@@ -120,7 +157,7 @@
             captureGroupOpt (...)
           </code>
           <div class="tip" id="5">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; groupName:string -&gt; input:string -&gt; FsGroup<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; groupName:string -&gt; input:string -&gt; FsGroup<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -140,7 +177,7 @@
             captureOpt (...)
           </code>
           <div class="tip" id="6">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; groupName:string -&gt; input:string -&gt; string<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; groupName:string -&gt; input:string -&gt; string<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -180,7 +217,7 @@
             firstMatchOpt (...)
           </code>
           <div class="tip" id="8">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; input:string -&gt; FsMatch<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; input:string -&gt; FsMatch<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -280,7 +317,7 @@
             isMatchAtOpt (...)
           </code>
           <div class="tip" id="13">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; startAt:int -&gt; input:string -&gt; bool<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; startAt:int -&gt; input:string -&gt; bool<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -300,7 +337,7 @@
             isMatchOpt (...)
           </code>
           <div class="tip" id="14">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; input:string -&gt; bool<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; input:string -&gt; bool<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -360,7 +397,7 @@
             matchAtForOpt (...)
           </code>
           <div class="tip" id="17">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; startAt:int -&gt; length:int -&gt; input:string -&gt; FsMatch<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; startAt:int -&gt; length:int -&gt; input:string -&gt; FsMatch<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -380,7 +417,7 @@
             matchAtOpt (...)
           </code>
           <div class="tip" id="18">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; startAt:int -&gt; input:string -&gt; FsMatch<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; startAt:int -&gt; input:string -&gt; FsMatch<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -440,7 +477,7 @@
             matchesAtOpt (...)
           </code>
           <div class="tip" id="21">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; startAt:int -&gt; input:string -&gt; FsMatch []<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; startAt:int -&gt; input:string -&gt; FsMatch []<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -460,7 +497,7 @@
             matchesOpt (...)
           </code>
           <div class="tip" id="22">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; input:string -&gt; FsMatch []<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; input:string -&gt; FsMatch []<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -500,7 +537,7 @@
             replaceByMatch (...)
           </code>
           <div class="tip" id="24">
-            <strong>Signature:</strong> regularExpression:string -&gt; evalutor:(type) -&gt; input:string -&gt; string<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; evalutor:MatchEvaluator -&gt; input:string -&gt; string<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -520,7 +557,7 @@
             replaceByMatchMaxTimes (...)
           </code>
           <div class="tip" id="25">
-            <strong>Signature:</strong> regularExpression:string -&gt; evalutor:(type) -&gt; count:int -&gt; input:string -&gt; string<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; evalutor:MatchEvaluator -&gt; count:int -&gt; input:string -&gt; string<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -540,7 +577,7 @@
             replaceByMatchMaxTimesOpt (...)
           </code>
           <div class="tip" id="26">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; evalutor:(type) -&gt; count:int -&gt; input:string -&gt; string<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; evalutor:MatchEvaluator -&gt; count:int -&gt; input:string -&gt; string<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -560,7 +597,7 @@
             replaceByMatchMaxTimesStartAt (...)
           </code>
           <div class="tip" id="27">
-            <strong>Signature:</strong> regularExpression:string -&gt; evalutor:(type) -&gt; count:int -&gt; startAt:int -&gt; input:string -&gt; string<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; evalutor:MatchEvaluator -&gt; count:int -&gt; startAt:int -&gt; input:string -&gt; string<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -580,7 +617,7 @@
             replaceByMatchMaxTimesStartAtOpt (...)
           </code>
           <div class="tip" id="28">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; evalutor:(type) -&gt; count:int -&gt; startAt:int -&gt; input:string -&gt; string<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; evalutor:MatchEvaluator -&gt; count:int -&gt; startAt:int -&gt; input:string -&gt; string<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -600,7 +637,7 @@
             replaceByMatchOpt (...)
           </code>
           <div class="tip" id="29">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; evalutor:(type) -&gt; input:string -&gt; string<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; evalutor:MatchEvaluator -&gt; input:string -&gt; string<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -640,7 +677,7 @@
             replaceMaxTimesOpt (...)
           </code>
           <div class="tip" id="31">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; replacement:string -&gt; count:int -&gt; input:string -&gt; string<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; replacement:string -&gt; count:int -&gt; input:string -&gt; string<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -680,7 +717,7 @@
             replaceMaxTimesStartAtOpt (...)
           </code>
           <div class="tip" id="33">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; replacement:string -&gt; count:int -&gt; startAt:int -&gt; input:string -&gt; string<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; replacement:string -&gt; count:int -&gt; startAt:int -&gt; input:string -&gt; string<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -740,7 +777,7 @@
             splitMaxTimesOpt (...)
           </code>
           <div class="tip" id="36">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; count:int -&gt; input:string -&gt; string array<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; count:int -&gt; input:string -&gt; string array<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -780,7 +817,7 @@
             splitMaxTimesStartAtOpt (...)
           </code>
           <div class="tip" id="38">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; count:int -&gt; startAt:int -&gt; input:string -&gt; string array<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; count:int -&gt; startAt:int -&gt; input:string -&gt; string array<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -800,7 +837,7 @@
             splitOpt (...)
           </code>
           <div class="tip" id="39">
-            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:(type) -&gt; input:string -&gt; string array<br />
+            <strong>Signature:</strong> regularExpression:string -&gt; regexOptions:RegexOptions -&gt; input:string -&gt; string array<br />
                                   </div>
         </td>
         <td class="xmldoc">

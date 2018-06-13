@@ -33,16 +33,16 @@ NUGET
       Microsoft.NETCore.App (>= 2.0) - restriction: >= netcoreapp2.0
       Mono.Cecil (>= 0.10) - restriction: >= netcoreapp2.0
       Paket.Core (>= 5.170.2) - restriction: >= netcoreapp2.0
-    Expecto (8.1)
+    Expecto (8.1.1)
       Argu (>= 5.1) - restriction: || (>= net461) (>= netstandard2.0)
       Mono.Cecil (>= 0.10) - restriction: || (>= net461) (>= netstandard2.0)
       System.Diagnostics.FileVersionInfo (>= 4.3) - restriction: && (< net461) (>= netstandard2.0)
-    Expecto.BenchmarkDotNet (8.1)
+    Expecto.BenchmarkDotNet (8.1.1)
       BenchmarkDotNet (>= 0.10.13) - restriction: || (>= net461) (>= netcoreapp2.0)
-      FSharp.Core (>= 4.3.4) - restriction: || (>= net461) (>= netcoreapp2.0)
-      System.ValueTuple (>= 4.3.1) - restriction: >= net461
-    Expecto.FsCheck (8.1)
-      Expecto (>= 8.1) - restriction: || (>= net461) (>= netstandard2.0)
+      FSharp.Core (>= 4.2.3) - restriction: || (>= net461) (>= netcoreapp2.0)
+      System.ValueTuple (>= 4.5) - restriction: >= net461
+    Expecto.FsCheck (8.1.1)
+      Expecto (>= 8.1.1) - restriction: || (>= net461) (>= netstandard2.0)
       FsCheck (>= 2.10.4) - restriction: || (>= net461) (>= netstandard2.0)
     Expecto.VisualStudio.TestAdapter (9.0.0) - version_in_path: true
       Expecto (>= 8.0 < 9.0) - restriction: >= net461

@@ -63,6 +63,8 @@ let gitName = "FsRegEx"
 // The url for the raw files hosted
 let gitRaw = Environment.environVarOrDefault "gitRaw" "https://raw.githubusercontent.com/jackfoxy"
 
+let website = "/FsRegEx"
+
 // --------------------------------------------------------------------------------------
 // END TODO: The rest of the file includes standard build steps
 // --------------------------------------------------------------------------------------
@@ -172,7 +174,7 @@ let templates  = __SOURCE_DIRECTORY__ @@ "docsrc\\tools\\templates"
 let formatting = __SOURCE_DIRECTORY__ @@ "packages\\formatting\\FSharp.Formatting"
 let docTemplate = "docpage.cshtml"
 
-let github_release_user = Environment.environVarOrDefault "github_release_user" "fsharp"
+let github_release_user = Environment.environVarOrDefault "github_release_user" gitOwner
 let githubLink = sprintf "https://github.com/%s/%s" github_release_user gitName
 
 let info =
@@ -182,7 +184,7 @@ let info =
     "project-github", githubLink
     "project-nuget", "http://nuget.org/packages/FsRegEx" ]
 
-let root = "file://" + (__SOURCE_DIRECTORY__ @@ "docs")
+let root = website
 
 let referenceBinaries = []
 
