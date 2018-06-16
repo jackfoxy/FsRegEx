@@ -221,9 +221,6 @@ Target.create "ReferenceDocs" (fun _ ->
             |> Array.concat
             |> List.ofArray
 
-        printfn "conventionBased: %A" conventionBased
-        printfn "manuallyAdded: %A" manuallyAdded
-
         conventionBased @ manuallyAdded
 
     binaries()
