@@ -178,7 +178,6 @@ release.cmd
 release.sh
 localpackages/
 paket-files
-.paket/
 *.orig
 docsrc/content/license.md
 docsrc/content/release-notes.md

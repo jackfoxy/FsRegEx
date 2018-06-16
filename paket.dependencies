@@ -2,8 +2,6 @@ source https://nuget.org/api/v2
 
 nuget FSharp.Core
 
-github fsharp/FAKE modules/Octokit/Octokit.fsx
-
 nuget Expecto
 nuget Expecto.BenchmarkDotNet
 nuget Expecto.FsCheck
