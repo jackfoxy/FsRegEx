@@ -298,7 +298,7 @@ Target.create "All" ignore
 "RunTests" ?=> "CleanDocs"
 
 "CleanDocs"
-  ==>"Docs"
+  ==> "Docs"
   ==> "ReferenceDocs"
   ==> "GenerateDocs"
 
